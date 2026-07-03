@@ -16,6 +16,9 @@ final class Category {
     @Relationship(deleteRule: .nullify, inverse: \InvoiceCategoryTotal.category)
     var invoiceTotals: [InvoiceCategoryTotal]? = []
 
+    @Relationship(deleteRule: .nullify, inverse: \InvoiceTransaction.category)
+    var invoiceTransactions: [InvoiceTransaction]? = []
+
     @Relationship(deleteRule: .nullify, inverse: \MerchantRule.category)
     var merchantRules: [MerchantRule]? = []
 
@@ -26,9 +29,11 @@ final class Category {
     }
 
     var referenceCount: Int {
-        (templates?.count ?? 0)
-            + (oneOffs?.count ?? 0)
-            + (invoiceTotals?.count ?? 0)
-            + (merchantRules?.count ?? 0)
+        let templateCount = templates?.count ?? 0
+        let oneOffCount = oneOffs?.count ?? 0
+        let invoiceTotalCount = invoiceTotals?.count ?? 0
+        let invoiceTransactionCount = invoiceTransactions?.count ?? 0
+        let merchantRuleCount = merchantRules?.count ?? 0
+        return templateCount + oneOffCount + invoiceTotalCount + invoiceTransactionCount + merchantRuleCount
     }
 }

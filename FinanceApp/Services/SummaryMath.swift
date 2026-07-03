@@ -62,9 +62,11 @@ enum SummaryMath {
             guard let cat = entry.category else { continue }
             buckets[cat.id, default: (cat, 0)].1 += entry.amount
         }
-        for total in month.invoice?.categoryTotals ?? [] {
-            guard let cat = total.category else { continue }
-            buckets[cat.id, default: (cat, 0)].1 += total.amount
+        // Invoice spending folds in per categorized transaction. Fee lines (IOF)
+        // carry no category and are skipped.
+        for txn in month.invoice?.transactions ?? [] {
+            guard let cat = txn.category, !txn.isFee else { continue }
+            buckets[cat.id, default: (cat, 0)].1 += txn.amount
         }
 
         return buckets.values

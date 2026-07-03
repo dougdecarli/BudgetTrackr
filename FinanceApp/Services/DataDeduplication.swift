@@ -89,6 +89,7 @@ enum DataDeduplication {
         for template in dup.templates ?? [] { template.category = keep }
         for oneOff in dup.oneOffs ?? [] { oneOff.category = keep }
         for total in dup.invoiceTotals ?? [] { total.category = keep }
+        for txn in dup.invoiceTransactions ?? [] { txn.category = keep }
         for rule in dup.merchantRules ?? [] { rule.category = keep }
     }
 

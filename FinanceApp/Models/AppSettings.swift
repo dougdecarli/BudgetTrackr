@@ -15,6 +15,11 @@ final class AppSettings {
     /// Read/write through `language`.
     var languageRaw: String = AppLanguage.system.rawValue
 
+    /// One-time flag: whether the Vestuário/Compras categories have been
+    /// back-filled into an existing install (fresh installs get them via the
+    /// default seed). Gated so a category the user later deletes won't reappear.
+    var hasSeededShoppingCategories: Bool = false
+
     /// Selected UI language, backed by `languageRaw`. Falls back to `.system`
     /// for any unrecognized stored value.
     var language: AppLanguage {

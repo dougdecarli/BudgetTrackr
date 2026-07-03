@@ -11,6 +11,9 @@ final class CreditCardInvoice {
     @Relationship(deleteRule: .cascade, inverse: \InvoiceCategoryTotal.invoice)
     var categoryTotals: [InvoiceCategoryTotal]? = []
 
+    @Relationship(deleteRule: .cascade, inverse: \InvoiceTransaction.invoice)
+    var transactions: [InvoiceTransaction]? = []
+
     init(
         id: UUID = UUID(),
         month: Month? = nil,

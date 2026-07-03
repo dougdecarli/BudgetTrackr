@@ -7,6 +7,9 @@
     "—" : {
 
     },
+    "·" : {
+
+    },
     "“%@” está em uso por %lld item(s). Remova as referências antes de excluir." : {
       "localizations" : {
         "en" : {
@@ -30,6 +33,16 @@
     },
     "%lld" : {
 
+    },
+    "%lld de %lld" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld de %2$lld"
+          }
+        }
+      }
     },
     "%lld fontes" : {
       "localizations" : {
@@ -151,6 +164,16 @@
         }
       }
     },
+    "%lld/%lld" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld/%2$lld"
+          }
+        }
+      }
+    },
     "3 meses" : {
       "localizations" : {
         "en" : {
@@ -180,6 +203,12 @@
           }
         }
       }
+    },
+    "A revisar · %lld" : {
+
+    },
+    "Abrir" : {
+
     },
     "Abrir calendário" : {
       "localizations" : {
@@ -320,6 +349,9 @@
         }
       }
     },
+    "As compras importadas e suas categorias serão apagadas deste mês." : {
+
+    },
     "Assinaturas" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -432,6 +464,15 @@
         }
       }
     },
+    "Categorizadas" : {
+
+    },
+    "Categorizadas · %lld" : {
+
+    },
+    "Categorizar" : {
+
+    },
     "Com lançamentos" : {
       "localizations" : {
         "en" : {
@@ -473,6 +514,16 @@
         }
       }
     },
+    "Compras" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shopping"
+          }
+        }
+      }
+    },
     "Contas" : {
       "localizations" : {
         "en" : {
@@ -493,6 +544,9 @@
           }
         }
       }
+    },
+    "Criar" : {
+
     },
     "Crie uma categoria em Ajustes → Categorias antes de continuar." : {
       "localizations" : {
@@ -691,6 +745,9 @@
         }
       }
     },
+    "Este PDF pede senha (bancos costumam usar dígitos do CPF do titular)." : {
+
+    },
     "Ex: Mercado" : {
       "localizations" : {
         "en" : {
@@ -731,6 +788,9 @@
         }
       }
     },
+    "Fatura protegida" : {
+
+    },
     "Fechar" : {
 
     },
@@ -770,6 +830,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Spending"
+          }
+        }
+      }
+    },
+    "Gastos por categoria" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spending breakdown"
           }
         }
       }
@@ -858,6 +928,7 @@
       }
     },
     "Importar fatura (em breve)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -866,6 +937,12 @@
           }
         }
       }
+    },
+    "Importar PDF" : {
+
+    },
+    "Importe a fatura do cartão" : {
+
     },
     "Imposto" : {
       "localizations" : {
@@ -1079,6 +1156,9 @@
           }
         }
       }
+    },
+    "Não foi possível importar" : {
+
     },
     "Não importada" : {
       "localizations" : {
@@ -1294,6 +1374,16 @@
         }
       }
     },
+    "Parcela %lld/%lld" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Parcela %1$lld/%2$lld"
+          }
+        }
+      }
+    },
     "Pets" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -1399,6 +1489,9 @@
         }
       }
     },
+    "Reimportar PDF" : {
+
+    },
     "Remover" : {
       "localizations" : {
         "en" : {
@@ -1408,6 +1501,12 @@
           }
         }
       }
+    },
+    "Remover fatura" : {
+
+    },
+    "Remover fatura?" : {
+
     },
     "Renda" : {
       "localizations" : {
@@ -1521,6 +1620,9 @@
         }
       }
     },
+    "Selecione o PDF da fatura do Nubank, Itaú ou Santander. Cada compra aparece aqui para você categorizar — e entra no total de gastos do mês." : {
+
+    },
     "Selecione…" : {
       "localizations" : {
         "en" : {
@@ -1580,6 +1682,9 @@
           }
         }
       }
+    },
+    "Senha" : {
+
     },
     "Separador decimal" : {
       "localizations" : {
@@ -1657,6 +1762,9 @@
         }
       }
     },
+    "Toque para categorizar" : {
+
+    },
     "Total" : {
 
     },
@@ -1721,7 +1829,6 @@
       }
     },
     "Vestuário" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {

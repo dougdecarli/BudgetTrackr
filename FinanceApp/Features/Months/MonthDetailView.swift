@@ -168,9 +168,7 @@ struct MonthDetailView: View {
                     )
                 }
             case .invoice:
-                SectionDetailScreen("Fatura do cartão") {
-                    InvoiceSectionView(month: month)
-                }
+                InvoiceReviewScreen(month: month)
             }
         }
         // Add flows are presented from this root screen — the configuration that

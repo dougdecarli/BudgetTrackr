@@ -16,6 +16,7 @@ struct FinanceAppApp: App {
             OneOffExpense.self,
             CreditCardInvoice.self,
             InvoiceCategoryTotal.self,
+            InvoiceTransaction.self,
         ])
 
         // `.automatic` enables iCloud sync when the app has an iCloud/CloudKit
@@ -80,6 +81,28 @@ struct FinanceAppApp: App {
         // category was stored under its English display name instead of the
         // canonical pt-BR key.
         normalizeDefaultCategoryNames(context)
+
+        // One-time back-fill of the shopping-related categories for installs that
+        // predate them (fresh installs already get them from the default seed).
+        backfillShoppingCategories(context)
+    }
+
+    private static let shoppingCategories = ["Vestuário", "Compras"]
+
+    /// Inserts the shopping-related categories once, if missing, for an existing
+    /// install. Gated on an `AppSettings` flag so a category the user later
+    /// deletes does not reappear on the next launch.
+    private static func backfillShoppingCategories(_ context: ModelContext) {
+        let settings = (try? context.fetch(FetchDescriptor<AppSettings>(sortBy: [SortDescriptor(\.id)])))?.first
+        guard let settings, !settings.hasSeededShoppingCategories else { return }
+
+        let categories = (try? context.fetch(FetchDescriptor<Category>())) ?? []
+        let present = Set(categories.map { $0.name.lowercased() })
+        for name in shoppingCategories where !present.contains(name.lowercased()) {
+            context.insert(Category(name: name))
+        }
+        settings.hasSeededShoppingCategories = true
+        try? context.save()
     }
 
     /// Reverse of `CategoryLocalization`'s pt-BR→English map. Default category
@@ -95,6 +118,8 @@ struct FinanceAppApp: App {
         "Leisure": "Lazer",
         "Groceries": "Mercado",
         "Bills": "Contas",
+        "Clothing": "Vestuário",
+        "Shopping": "Compras",
     ]
 
     /// Rewrites any default category stored under its English name back to the
@@ -123,7 +148,7 @@ struct FinanceAppApp: App {
         // Stored as the canonical (pt-BR) key; the UI localizes it at display
         // time via `Text(LocalizedStringKey:)`, so these follow the app's
         // language switch. The user can still rename or delete them.
-        let defaults = ["Moradia", "Alimentação", "Transporte", "Saúde", "Educação", "Lazer", "Mercado", "Contas"]
+        let defaults = ["Moradia", "Alimentação", "Transporte", "Saúde", "Educação", "Lazer", "Mercado", "Contas", "Vestuário", "Compras"]
         for name in defaults {
             context.insert(Category(name: name))
         }

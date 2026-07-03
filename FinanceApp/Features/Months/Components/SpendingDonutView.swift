@@ -95,11 +95,11 @@ struct SpendingDonutView: View {
                         .fill(slice.color)
                         .frame(width: 9, height: 9)
                     Text(CategoryLocalization.display(slice.name, locale: locale))
-                        .font(.subheadline)
+                        .font(.footnote)
                         .lineLimit(1)
                     Spacer(minLength: 6)
                     Text(Money.compact(slice.amount))
-                        .font(.subheadline)
+                        .font(.caption2)
                         .monospacedDigit()
                         .lineLimit(1)
                         .layoutPriority(1)
@@ -125,7 +125,7 @@ struct SpendingDonutView: View {
 
 #Preview {
     let slices: [SpendingSlice] = [
-        SpendingSlice(id: UUID(), name: "Moradia", amount: 6180, color: .orange),
+        SpendingSlice(id: UUID(), name: "Alimentacao", amount: 6180, color: .orange),
         SpendingSlice(id: UUID(), name: "Crédito", amount: 4500, color: .pink),
         SpendingSlice(id: UUID(), name: "Mercado", amount: 2000, color: .blue),
         SpendingSlice(id: UUID(), name: "Contas", amount: 1550, color: .teal),

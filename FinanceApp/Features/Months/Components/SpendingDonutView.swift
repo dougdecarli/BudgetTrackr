@@ -46,6 +46,7 @@ enum SpendingDonut {
 /// "k" amounts so category names stay visible. Shared by the Meses dashboard
 /// and the Trends "Gastos por categoria" card.
 struct SpendingDonutView: View {
+    @Environment(\.locale) private var locale
     let slices: [SpendingSlice]
 
     private var total: Decimal { slices.reduce(0) { $0 + $1.amount } }
@@ -93,7 +94,7 @@ struct SpendingDonutView: View {
                     Circle()
                         .fill(slice.color)
                         .frame(width: 9, height: 9)
-                    Text(LocalizedStringKey(slice.name))
+                    Text(CategoryLocalization.display(slice.name, locale: locale))
                         .font(.subheadline)
                         .lineLimit(1)
                     Spacer(minLength: 6)

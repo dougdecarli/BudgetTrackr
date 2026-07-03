@@ -4,6 +4,8 @@ import SwiftUI
 /// the add flows. Each chip carries its own icon + tint; an optional trailing
 /// action chip (e.g. "New source") lets the user create an option inline.
 struct ChipPicker: View {
+    @Environment(\.locale) private var locale
+
     struct Chip: Identifiable {
         let id: UUID
         let label: String
@@ -50,7 +52,9 @@ struct ChipPicker: View {
 
     private func chipView(_ chip: Chip) -> some View {
         let selected = chip.id == selection
-        let label = localizesLabels ? Text(LocalizedStringKey(chip.label)) : Text(chip.label)
+        let label = localizesLabels
+            ? Text(CategoryLocalization.display(chip.label, locale: locale))
+            : Text(chip.label)
         return Button {
             selection = selected ? nil : chip.id
         } label: {

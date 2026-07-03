@@ -1,9 +1,10 @@
 import SwiftUI
 
 /// Renders a category name, or a localized "no category" placeholder when the
-/// name is missing or empty. Using this instead of `name ?? "Sem categoria"`
-/// keeps the fallback localizable — a `String` fallback would render verbatim.
+/// name is missing or empty. Default (seeded) category names are translated for
+/// display via `CategoryLocalization`; custom names show verbatim.
 struct CategoryNameText: View {
+    @Environment(\.locale) private var locale
     private let name: String?
 
     init(_ name: String?) {
@@ -12,9 +13,7 @@ struct CategoryNameText: View {
 
     var body: some View {
         if let name, !name.isEmpty {
-            // Localized so default (seeded) category names follow the app's
-            // language; custom names fall back to their literal text.
-            Text(LocalizedStringKey(name))
+            Text(CategoryLocalization.display(name, locale: locale))
         } else {
             Text("Sem categoria")
         }

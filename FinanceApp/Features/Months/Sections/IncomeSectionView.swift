@@ -8,10 +8,14 @@ struct IncomeSectionView: View {
     var onAdd: () -> Void = {}
     var onEdit: (IncomeEntry) -> Void = { _ in }
 
+    // Queried (rather than read off `month.incomeEntries`) so the list refreshes
+    // when an entry is added from the sheet presented at the screen root.
+    @Query private var allIncomeEntries: [IncomeEntry]
+
     private var entries: [IncomeEntry] {
-        (month.incomeEntries ?? []).sorted {
-            ($0.source?.label ?? "") < ($1.source?.label ?? "")
-        }
+        allIncomeEntries
+            .filter { $0.month?.id == month.id }
+            .sorted { ($0.source?.label ?? "") < ($1.source?.label ?? "") }
     }
 
     var body: some View {

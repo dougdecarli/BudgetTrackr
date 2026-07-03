@@ -4,6 +4,8 @@ import SwiftData
 struct RecurringSectionView: View {
     @Environment(\.modelContext) private var context
     let month: Month
+    /// Presented by the parent screen's root so the sheet is never nested.
+    var onEdit: (ExpenseTemplate) -> Void = { _ in }
 
     @Query(
         filter: #Predicate<ExpenseTemplate> { !$0.isArchived },
@@ -33,7 +35,7 @@ struct RecurringSectionView: View {
                     .font(.callout)
             } else {
                 ForEach(visibleTemplates) { template in
-                    RecurringRow(month: month, template: template)
+                    RecurringRow(month: month, template: template, onEdit: onEdit)
                         .swipeActions(edge: .trailing) {
                             Button(role: .destructive) {
                                 hide(template)
@@ -45,7 +47,7 @@ struct RecurringSectionView: View {
 
                 if showingHidden {
                     ForEach(hiddenTemplates) { template in
-                        RecurringRow(month: month, template: template)
+                        RecurringRow(month: month, template: template, onEdit: onEdit)
                             .opacity(0.5)
                             .swipeActions(edge: .trailing) {
                                 Button {
@@ -105,62 +107,48 @@ struct RecurringSectionView: View {
 }
 
 private struct RecurringRow: View {
-    @Environment(\.modelContext) private var context
     let month: Month
     let template: ExpenseTemplate
-
-    @State private var amount: Decimal?
+    let onEdit: (ExpenseTemplate) -> Void
 
     private var existingEntry: RecurringExpenseEntry? {
         (month.recurringEntries ?? []).first { $0.template?.id == template.id }
     }
 
     var body: some View {
-        HStack {
-            VStack(alignment: .leading) {
-                HStack(spacing: 4) {
-                    Text(template.label)
-                    if template.isTicketCard {
-                        Image(systemName: "creditcard")
-                            .font(.caption2)
-                            .foregroundStyle(.orange)
+        Button {
+            onEdit(template)
+        } label: {
+            HStack {
+                VStack(alignment: .leading) {
+                    HStack(spacing: 4) {
+                        Text(template.label)
+                            .foregroundStyle(.primary)
+                        if template.isTicketCard {
+                            Image(systemName: "creditcard")
+                                .font(.caption2)
+                                .foregroundStyle(.orange)
+                        }
                     }
+                    CategoryNameText(template.category?.name)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
                 }
-                CategoryNameText(template.category?.name)
+                Spacer()
+                if let amount = existingEntry?.amount {
+                    Text(amount.brl)
+                        .monospacedDigit()
+                        .foregroundStyle(.primary)
+                } else {
+                    Text("Definir")
+                        .foregroundStyle(.secondary)
+                }
+                Image(systemName: "chevron.right")
                     .font(.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(.tertiary)
             }
-            Spacer()
-            TextField(
-                "R$ 0,00",
-                value: $amount,
-                format: Money.currencyStyle
-            )
-            .keyboardType(.decimalPad)
-            .multilineTextAlignment(.trailing)
-            .monospacedDigit()
-            .frame(maxWidth: 140)
+            .contentShape(Rectangle())
         }
-        .onAppear {
-            amount = existingEntry?.amount
-        }
-        .onChange(of: amount) { _, newValue in
-            persist(newValue)
-        }
-    }
-
-    private func persist(_ newValue: Decimal?) {
-        if let value = newValue, value > 0 {
-            if let entry = existingEntry {
-                entry.amount = value
-            } else {
-                context.insert(
-                    RecurringExpenseEntry(month: month, template: template, amount: value)
-                )
-            }
-        } else if let entry = existingEntry {
-            context.delete(entry)
-        }
-        try? context.save()
+        .buttonStyle(.plain)
     }
 }

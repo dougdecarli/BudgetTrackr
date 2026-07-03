@@ -33,6 +33,24 @@ enum Money {
         return value < 0 ? "-\(formatted)" : formatted
     }
 
+    /// Compact currency for tight spots (e.g. chart legends): thousands collapse
+    /// to "k" — `R$ 6,2k` / `$ 6.2k`. Values under 1.000 are shown in full.
+    static func compact(_ value: Decimal) -> String {
+        let symbol = presentationLocale.currencySymbol ?? ""
+        let prefix = symbol.isEmpty ? "" : "\(symbol)\u{00A0}"
+        let double = NSDecimalNumber(decimal: value).doubleValue
+
+        guard abs(double) >= 1000 else {
+            return prefix + String(format: "%.0f", double)
+        }
+        let separator = presentationLocale.decimalSeparator ?? "."
+        let thousands = ((double / 1000) * 10).rounded() / 10
+        let number = thousands == thousands.rounded()
+            ? String(format: "%.0f", thousands)
+            : String(format: "%.1f", thousands).replacingOccurrences(of: ".", with: separator)
+        return "\(prefix)\(number)k"
+    }
+
     static func formatPercent(_ value: Double, fractionDigits: Int = 1) -> String {
         value.formatted(.percent.precision(.fractionLength(fractionDigits)).locale(presentationLocale))
     }

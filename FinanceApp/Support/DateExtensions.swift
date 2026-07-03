@@ -27,6 +27,20 @@ extension Date {
         return raw.prefix(1).uppercased() + raw.dropFirst()
     }
 
+    /// Standalone, capitalized month name, e.g. "Junho". Paired with `yearLabel`
+    /// so the month header can weight the name and year differently.
+    var monthNamePtBR: String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "pt_BR")
+        formatter.dateFormat = "LLLL"
+        let raw = formatter.string(from: self)
+        return raw.prefix(1).uppercased() + raw.dropFirst()
+    }
+
+    var yearLabel: String {
+        String(Calendar.current.component(.year, from: self))
+    }
+
     var shortMonthLabelPtBR: String {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "pt_BR")

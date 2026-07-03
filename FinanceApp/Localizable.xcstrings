@@ -1,7 +1,10 @@
 {
   "sourceLanguage" : "pt-BR",
   "strings" : {
-    "%@ → %@" : {
+    "" : {
+
+    },
+    "—" : {
 
     },
     "“%@” está em uso por %lld item(s). Remova as referências antes de excluir." : {
@@ -15,6 +18,7 @@
       }
     },
     "“%@” passa a aparecer todo mês a partir do próximo." : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -24,16 +28,28 @@
         }
       }
     },
+    "%@ → %@" : {
+
+    },
+    "%lld" : {
+
+    },
     "%lld fontes" : {
       "localizations" : {
         "en" : {
           "variations" : {
             "plural" : {
               "one" : {
-                "stringUnit" : { "state" : "translated", "value" : "%lld source" }
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld source"
+                }
               },
               "other" : {
-                "stringUnit" : { "state" : "translated", "value" : "%lld sources" }
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld sources"
+                }
               }
             }
           }
@@ -42,10 +58,16 @@
           "variations" : {
             "plural" : {
               "one" : {
-                "stringUnit" : { "state" : "translated", "value" : "%lld fonte" }
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld fonte"
+                }
               },
               "other" : {
-                "stringUnit" : { "state" : "translated", "value" : "%lld fontes" }
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld fontes"
+                }
               }
             }
           }
@@ -58,10 +80,16 @@
           "variations" : {
             "plural" : {
               "one" : {
-                "stringUnit" : { "state" : "translated", "value" : "%lld recorded" }
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld recorded"
+                }
               },
               "other" : {
-                "stringUnit" : { "state" : "translated", "value" : "%lld recorded" }
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld recorded"
+                }
               }
             }
           }
@@ -70,10 +98,16 @@
           "variations" : {
             "plural" : {
               "one" : {
-                "stringUnit" : { "state" : "translated", "value" : "%lld lançada" }
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld lançada"
+                }
               },
               "other" : {
-                "stringUnit" : { "state" : "translated", "value" : "%lld lançadas" }
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld lançadas"
+                }
               }
             }
           }
@@ -86,10 +120,16 @@
           "variations" : {
             "plural" : {
               "one" : {
-                "stringUnit" : { "state" : "translated", "value" : "%lld entry" }
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld entry"
+                }
               },
               "other" : {
-                "stringUnit" : { "state" : "translated", "value" : "%lld entries" }
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld entries"
+                }
               }
             }
           }
@@ -98,10 +138,16 @@
           "variations" : {
             "plural" : {
               "one" : {
-                "stringUnit" : { "state" : "translated", "value" : "%lld lançamento" }
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld lançamento"
+                }
               },
               "other" : {
-                "stringUnit" : { "state" : "translated", "value" : "%lld lançamentos" }
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld lançamentos"
+                }
               }
             }
           }
@@ -110,192 +156,552 @@
     },
     "3 meses" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "3 months" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3 months"
+          }
+        }
       }
     },
     "6 meses" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "6 months" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "6 months"
+          }
+        }
       }
     },
     "12 meses" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "12 months" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "12 months"
+          }
+        }
+      }
+    },
+    "Abrir calendário" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open calendar"
+          }
+        }
+      }
+    },
+    "Acima da renda" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Over income"
+          }
+        }
       }
     },
     "Acumulado no ano" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Year to date" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Year to date"
+          }
+        }
       }
     },
     "Adicionar despesa avulsa" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Add one-off expense" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add one-off expense"
+          }
+        }
       }
     },
     "Adicionar renda" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Add income" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add income"
+          }
+        }
       }
     },
     "Ajustes" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Settings" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings"
+          }
+        }
       }
     },
-    "Arquivar" : {
+    "Alimentação" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Archive" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Food"
+          }
+        }
+      }
+    },
+    "Apagar" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete"
+          }
+        }
       }
     },
     "Arquivados" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Archived" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Archived"
+          }
+        }
+      }
+    },
+    "Arquivar" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Archive"
+          }
+        }
+      }
+    },
+    "Assinaturas" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Subscriptions"
+          }
+        }
       }
     },
     "Automático (sistema)" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Automatic (system)" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatic (system)"
+          }
+        }
       }
     },
     "Benefício" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Benefit" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Benefit"
+          }
+        }
       }
     },
     "Cadastros" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Manage" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Manage"
+          }
+        }
       }
     },
     "Calendário" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Calendar" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Calendar"
+          }
+        }
       }
     },
     "Cancelar" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Cancel" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        }
+      }
+    },
+    "Cartão" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Card"
+          }
+        }
       }
     },
     "Cartão alimentação/refeição" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Meal/food card" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meal/food card"
+          }
+        }
       }
     },
     "Categoria" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Category" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Category"
+          }
+        }
       }
     },
     "Categorias" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Categories" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Categories"
+          }
+        }
+      }
+    },
+    "Com lançamentos" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "With entries"
+          }
+        }
       }
     },
     "Comparação mês a mês" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Month over month" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Month over month"
+          }
+        }
+      }
+    },
+    "Contas" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bills"
+          }
+        }
+      }
+    },
+    "Crédito" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Credit"
+          }
+        }
       }
     },
     "Crie uma categoria em Ajustes → Categorias antes de continuar." : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Create a category in Settings → Categories before continuing." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create a category in Settings → Categories before continuing."
+          }
+        }
       }
     },
     "de %@" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "was %@" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "was %@"
+          }
+        }
+      }
+    },
+    "Débito" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Debit"
+          }
+        }
+      }
+    },
+    "Definir" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set"
+          }
+        }
       }
     },
     "Despesa" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Expense" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Expense"
+          }
+        }
       }
     },
     "Despesa avulsa" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "One-off expense" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "One-off expense"
+          }
+        }
+      }
+    },
+    "Despesa recorrente" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recurring expense"
+          }
+        }
       }
     },
     "Despesas avulsas" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "One-off expenses" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "One-off expenses"
+          }
+        }
       }
     },
     "Despesas recorrentes" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Recurring expenses" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recurring expenses"
+          }
+        }
       }
     },
-    "Editar categoria" : {
+    "disponível" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Edit category" } }
-      }
-    },
-    "Editar despesa" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Edit expense" } }
-      }
-    },
-    "Editar fonte" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Edit source" } }
-      }
-    },
-    "Editar renda" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Edit income" } }
-      }
-    },
-    "Editar regra" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Edit rule" } }
-      }
-    },
-    "Em dinheiro" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Cash" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "available"
+          }
+        }
       }
     },
     "É preciso ter pelo menos dois meses para comparar." : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "You need at least two months to compare." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You need at least two months to compare."
+          }
+        }
       }
+    },
+    "Editar categoria" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit category"
+          }
+        }
+      }
+    },
+    "Editar despesa" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit expense"
+          }
+        }
+      }
+    },
+    "Editar fonte" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit source"
+          }
+        }
+      }
+    },
+    "Editar regra" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit rule"
+          }
+        }
+      }
+    },
+    "Editar renda" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit income"
+          }
+        }
+      }
+    },
+    "Educação" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Education"
+          }
+        }
+      }
+    },
+    "Em dinheiro" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cash"
+          }
+        }
+      }
+    },
+    "English" : {
+
     },
     "Estabelecimento" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Merchant" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Merchant"
+          }
+        }
       }
     },
     "Ex: Mercado" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "e.g. Groceries" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "e.g. Groceries"
+          }
+        }
       }
     },
     "Excluir" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Delete" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete"
+          }
+        }
+      }
+    },
+    "Excluir permanentemente?" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete permanently?"
+          }
+        }
       }
     },
     "Fatura do cartão" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Card statement" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Card statement"
+          }
+        }
       }
+    },
+    "Fechar" : {
+
     },
     "Fonte" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Source" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Source"
+          }
+        }
       }
     },
     "Fontes de renda" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Income sources" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Income sources"
+          }
+        }
+      }
+    },
+    "gasto" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "spent"
+          }
+        }
       }
     },
     "Gastos" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Spending" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spending"
+          }
+        }
       }
     },
     "Gastos por categoria · %lld meses" : {
@@ -304,10 +710,16 @@
           "variations" : {
             "plural" : {
               "one" : {
-                "stringUnit" : { "state" : "translated", "value" : "Spending by category · %lld month" }
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Spending by category · %lld month"
+                }
               },
               "other" : {
-                "stringUnit" : { "state" : "translated", "value" : "Spending by category · %lld months" }
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Spending by category · %lld months"
+                }
               }
             }
           }
@@ -316,10 +728,16 @@
           "variations" : {
             "plural" : {
               "one" : {
-                "stringUnit" : { "state" : "translated", "value" : "Gastos por categoria · %lld mês" }
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Gastos por categoria · %lld mês"
+                }
               },
               "other" : {
-                "stringUnit" : { "state" : "translated", "value" : "Gastos por categoria · %lld meses" }
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Gastos por categoria · %lld meses"
+                }
               }
             }
           }
@@ -328,77 +746,195 @@
     },
     "Idioma" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Language" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Language"
+          }
+        }
       }
     },
     "Importada" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Imported" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Imported"
+          }
+        }
       }
     },
     "Importada em %@" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Imported on %@" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Imported on %@"
+          }
+        }
       }
     },
     "Importar" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Import" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Import"
+          }
+        }
       }
     },
     "Importar fatura (em breve)" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Import statement (coming soon)" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Import statement (coming soon)"
+          }
+        }
       }
     },
     "Imposto" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tax" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tax"
+          }
+        }
       }
     },
     "Impostos" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Taxes" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Taxes"
+          }
+        }
       }
     },
     "Informações" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Information" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Information"
+          }
+        }
       }
     },
     "Itens arquivados aparecem aqui para restauração." : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Archived items appear here so you can restore them." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Archived items appear here so you can restore them."
+          }
+        }
       }
     },
     "Já existe uma categoria com esse nome." : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "A category with that name already exists." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A category with that name already exists."
+          }
+        }
       }
     },
     "Janela" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Window" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Window"
+          }
+        }
       }
     },
     "Lançamentos" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Entries" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entries"
+          }
+        }
+      }
+    },
+    "Lazer" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leisure"
+          }
+        }
       }
     },
     "Média %@" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Avg. %@" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avg. %@"
+          }
+        }
+      }
+    },
+    "Mercado" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Groceries"
+          }
+        }
+      }
+    },
+    "Mês" : {
+
+    },
+    "Mês anterior" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Previous month"
+          }
+        }
+      }
+    },
+    "Mês atual" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Current month"
+          }
+        }
       }
     },
     "Meses" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Months" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Months"
+          }
+        }
       }
     },
-    "Mês anterior" : {
+    "Moradia" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Previous month" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Housing"
+          }
+        }
       }
     },
     "Mostrar %lld removidas" : {
@@ -407,10 +943,16 @@
           "variations" : {
             "plural" : {
               "one" : {
-                "stringUnit" : { "state" : "translated", "value" : "Show %lld removed" }
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Show %lld removed"
+                }
               },
               "other" : {
-                "stringUnit" : { "state" : "translated", "value" : "Show %lld removed" }
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Show %lld removed"
+                }
               }
             }
           }
@@ -419,10 +961,16 @@
           "variations" : {
             "plural" : {
               "one" : {
-                "stringUnit" : { "state" : "translated", "value" : "Mostrar %lld removida" }
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Mostrar %lld removida"
+                }
               },
               "other" : {
-                "stringUnit" : { "state" : "translated", "value" : "Mostrar %lld removidas" }
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Mostrar %lld removidas"
+                }
               }
             }
           }
@@ -431,92 +979,203 @@
     },
     "Mostrar valor “em dinheiro”" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Show “cash” amount" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show “cash” amount"
+          }
+        }
       }
     },
     "Nada arquivado" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Nothing archived" } }
-      }
-    },
-    "Não, obrigado" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No, thanks" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nothing archived"
+          }
+        }
       }
     },
     "Não é possível excluir" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Can’t delete" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Can’t delete"
+          }
+        }
       }
     },
     "Não importada" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Not imported" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not imported"
+          }
+        }
+      }
+    },
+    "Não, obrigado" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No, thanks"
+          }
+        }
       }
     },
     "Nenhuma categoria" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No categories" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No categories"
+          }
+        }
+      }
+    },
+    "Nenhuma categoria ainda." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No categories yet."
+          }
+        }
       }
     },
     "Nenhuma despesa avulsa." : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No one-off expenses." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No one-off expenses."
+          }
+        }
       }
     },
     "Nenhuma despesa recorrente" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No recurring expenses" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No recurring expenses"
+          }
+        }
       }
     },
     "Nenhuma despesa recorrente cadastrada." : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No recurring expenses set up." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No recurring expenses set up."
+          }
+        }
       }
     },
     "Nenhuma fonte de renda" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No income sources" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No income sources"
+          }
+        }
       }
     },
     "Nenhuma regra" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No rules" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No rules"
+          }
+        }
       }
     },
     "Nenhuma renda registrada." : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No income recorded." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No income recorded."
+          }
+        }
       }
     },
     "Nome" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Name" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name"
+          }
+        }
       }
     },
     "Nome normalizado" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Normalized name" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Normalized name"
+          }
+        }
       }
     },
     "Nova categoria" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "New category" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New category"
+          }
+        }
       }
     },
     "Nova despesa" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "New expense" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New expense"
+          }
+        }
       }
     },
     "Nova fonte" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "New source" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New source"
+          }
+        }
+      }
+    },
+    "O item e seus lançamentos serão removidos. Esta ação não pode ser desfeita." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The item and its entries will be removed. This can't be undone."
+          }
+        }
       }
     },
     "Ocultar removidas" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Hide removed" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hide removed"
+          }
+        }
       }
     },
     "OK" : {
@@ -524,148 +1183,391 @@
     },
     "Outros" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Other" } }
-      }
-    },
-    "R$ 0,00" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "$0.00" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Other"
+          }
+        }
       }
     },
     "Para onde foi" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Where it went" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Where it went"
+          }
+        }
       }
+    },
+    "Pets" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pets"
+          }
+        }
+      }
+    },
+    "Português" : {
+
     },
     "Próximo mês" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Next month" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next month"
+          }
+        }
       }
     },
-    "Regras de estabelecimentos" : {
+    "R$ 0,00" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Merchant rules" } }
-      }
-    },
-    "Regras são criadas automaticamente ao revisar a fatura." : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Rules are created automatically when you review a statement." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "$0.00"
+          }
+        }
       }
     },
     "Registre rendas e gastos nos seus meses para acompanhar suas tendências aqui." : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Record income and spending across your months to track your trends here." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Record income and spending across your months to track your trends here."
+          }
+        }
+      }
+    },
+    "Regras de estabelecimentos" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Merchant rules"
+          }
+        }
+      }
+    },
+    "Regras são criadas automaticamente ao revisar a fatura." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rules are created automatically when you review a statement."
+          }
+        }
       }
     },
     "Remover" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Remove" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove"
+          }
+        }
       }
     },
     "Renda" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Income" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Income"
+          }
+        }
       }
     },
     "Renda vs. gastos" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Income vs. spending" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Income vs. spending"
+          }
+        }
       }
     },
     "Restaurar" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Restore" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restore"
+          }
+        }
       }
     },
     "Resultado" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Result" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Result"
+          }
+        }
       }
     },
     "Resultado do mês" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Month result" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Month result"
+          }
+        }
       }
     },
     "Resultado mensal" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Monthly result" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Monthly result"
+          }
+        }
+      }
+    },
+    "Salário" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salary"
+          }
+        }
       }
     },
     "Salvar" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Save" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save"
+          }
+        }
       }
     },
     "Salvar como despesa recorrente?" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Save as a recurring expense?" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save as a recurring expense?"
+          }
+        }
       }
     },
     "Salvar como recorrente" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Save as recurring" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save as recurring"
+          }
+        }
       }
     },
-    "Sem categoria" : {
+    "Saúde" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No category" } }
-      }
-    },
-    "Sem dados ainda" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No data yet" } }
-      }
-    },
-    "Sem gastos no período." : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No spending in this period." } }
-      }
-    },
-    "Sem mês anterior para comparar." : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No previous month to compare." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Health"
+          }
+        }
       }
     },
     "Selecione…" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Select…" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select…"
+          }
+        }
       }
+    },
+    "Sem categoria" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No category"
+          }
+        }
+      }
+    },
+    "Sem dados ainda" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No data yet"
+          }
+        }
+      }
+    },
+    "Sem gastos no período." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No spending in this period."
+          }
+        }
+      }
+    },
+    "Sem mês anterior para comparar." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No previous month to compare."
+          }
+        }
+      }
+    },
+    "Separador decimal" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Decimal separator"
+          }
+        }
+      }
+    },
+    "Série" : {
+
     },
     "Taxa de poupança" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Savings rate" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Savings rate"
+          }
+        }
       }
     },
     "Tendências" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Trends" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trends"
+          }
+        }
       }
     },
     "Tipo" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Type" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Type"
+          }
+        }
       }
     },
     "Todas as fontes ativas já foram adicionadas neste mês." : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "All active sources have already been added this month." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All active sources have already been added this month."
+          }
+        }
       }
     },
     "Toque em + para adicionar." : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tap + to add." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap + to add."
+          }
+        }
       }
+    },
+    "Total" : {
+
     },
     "Total da fatura" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Statement total" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statement total"
+          }
+        }
+      }
+    },
+    "Transporte" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transport"
+          }
+        }
+      }
+    },
+    "Valor" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Amount"
+          }
+        }
+      }
+    },
+    "Vestuário" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clothing"
+          }
+        }
+      }
+    },
+    "Viagem" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Travel"
+          }
+        }
       }
     },
     "Visualização" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Display" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Display"
+          }
+        }
       }
+    },
+    "Zero" : {
+
     }
   },
   "version" : "1.0"

@@ -27,9 +27,20 @@ struct RecurringSectionView: View {
         templates.filter { skippedIDs.contains($0.id) }
     }
 
+    /// Recurring entries that still count toward the month total but have no
+    /// visible template row — their template was archived or deleted. Without
+    /// surfacing these, an amount shows in "Resultado do mês" and Trends but
+    /// nowhere in this list.
+    private var orphanEntries: [RecurringExpenseEntry] {
+        (month.recurringEntries ?? []).filter { entry in
+            guard let template = entry.template else { return true }
+            return template.isArchived
+        }
+    }
+
     var body: some View {
         Section {
-            if templates.isEmpty {
+            if templates.isEmpty && orphanEntries.isEmpty {
                 Text("Nenhuma despesa recorrente cadastrada.")
                     .foregroundStyle(.secondary)
                     .font(.callout)
@@ -76,6 +87,18 @@ struct RecurringSectionView: View {
                         .font(.caption)
                     }
                 }
+
+                ForEach(orphanEntries) { entry in
+                    OrphanRecurringRow(entry: entry)
+                        .swipeActions(edge: .trailing) {
+                            Button(role: .destructive) {
+                                context.delete(entry)
+                                try? context.save()
+                            } label: {
+                                Label("Excluir", systemImage: "trash")
+                            }
+                        }
+                }
             }
         } header: {
             Text("Despesas recorrentes")
@@ -103,6 +126,30 @@ struct RecurringSectionView: View {
         skipped.removeAll { $0.id == template.id }
         month.skippedTemplates = skipped
         try? context.save()
+    }
+}
+
+/// Read-only row for a recurring entry whose template is archived or gone. It
+/// still counts toward the month total, so we show it here (with a status note)
+/// and allow removing it via swipe.
+private struct OrphanRecurringRow: View {
+    let entry: RecurringExpenseEntry
+
+    var body: some View {
+        HStack {
+            VStack(alignment: .leading) {
+                Text(entry.template?.label ?? String(localized: "Despesa recorrente"))
+                    .foregroundStyle(.primary)
+                    .lineLimit(1)
+                Text(entry.template == nil ? "Sem modelo" : "Arquivada")
+                    .font(.caption)
+                    .foregroundStyle(.orange)
+            }
+            Spacer()
+            Text(entry.amount.brl)
+                .monospacedDigit()
+                .foregroundStyle(.primary)
+        }
     }
 }
 

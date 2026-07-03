@@ -1,12 +1,8 @@
 {
   "sourceLanguage" : "pt-BR",
   "strings" : {
-    "" : {
-
-    },
-    "—" : {
-
-    },
+    "" : {},
+    "—" : {},
     "“%@” está em uso por %lld item(s). Remova as referências antes de excluir." : {
       "localizations" : {
         "en" : {
@@ -28,12 +24,8 @@
         }
       }
     },
-    "%@ → %@" : {
-
-    },
-    "%lld" : {
-
-    },
+    "%@ → %@" : {},
+    "%lld" : {},
     "%lld fontes" : {
       "localizations" : {
         "en" : {
@@ -608,9 +600,7 @@
         }
       }
     },
-    "English" : {
-
-    },
+    "English" : {},
     "Estabelecimento" : {
       "localizations" : {
         "en" : {
@@ -661,9 +651,7 @@
         }
       }
     },
-    "Fechar" : {
-
-    },
+    "Fechar" : {},
     "Fonte" : {
       "localizations" : {
         "en" : {
@@ -894,9 +882,7 @@
         }
       }
     },
-    "Mês" : {
-
-    },
+    "Mês" : {},
     "Mês anterior" : {
       "localizations" : {
         "en" : {
@@ -1178,9 +1164,7 @@
         }
       }
     },
-    "OK" : {
-
-    },
+    "OK" : {},
     "Outros" : {
       "localizations" : {
         "en" : {
@@ -1212,9 +1196,7 @@
         }
       }
     },
-    "Português" : {
-
-    },
+    "Português" : {},
     "Próximo mês" : {
       "localizations" : {
         "en" : {
@@ -1448,9 +1430,7 @@
         }
       }
     },
-    "Série" : {
-
-    },
+    "Série" : {},
     "Taxa de poupança" : {
       "localizations" : {
         "en" : {
@@ -1501,9 +1481,7 @@
         }
       }
     },
-    "Total" : {
-
-    },
+    "Total" : {},
     "Total da fatura" : {
       "localizations" : {
         "en" : {
@@ -1566,8 +1544,26 @@
         }
       }
     },
-    "Zero" : {
-
+    "Zero" : {},
+    "Arquivada" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Archived"
+          }
+        }
+      }
+    },
+    "Sem modelo" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No template"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

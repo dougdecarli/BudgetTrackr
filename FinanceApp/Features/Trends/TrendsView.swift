@@ -339,50 +339,27 @@ private struct CategorySpendingCard: View {
     let months: [Month]
     let windowCount: Int
 
-    private var topCategories: [(category: Category, amount: Decimal)] {
+    private var slices: [SpendingSlice] {
         var buckets: [UUID: (Category, Decimal)] = [:]
         for month in months {
             for (cat, amount) in SummaryMath.categoryBreakdown(for: month) {
                 buckets[cat.id, default: (cat, 0)].1 += amount
             }
         }
-        return buckets.values
+        let breakdown = buckets.values
             .map { (category: $0.0, amount: $0.1) }
             .sorted { $0.amount > $1.amount }
-            .prefix(6)
-            .map { $0 }
+        return SpendingDonut.slices(from: breakdown)
     }
 
     var body: some View {
         Card("Gastos por categoria · \(windowCount) meses") {
-            if topCategories.isEmpty {
+            if slices.isEmpty {
                 Text("Sem gastos no período.")
                     .font(.callout)
                     .foregroundStyle(.secondary)
             } else {
-                let maxAmount = topCategories.map(\.amount).max() ?? 1
-                Chart(topCategories, id: \.category.id) { item in
-                    BarMark(
-                        x: .value("Total", item.amount.chartDouble),
-                        y: .value("Categoria", item.category.name)
-                    )
-                    .foregroundStyle(by: .value("Categoria", item.category.name))
-                    .cornerRadius(6)
-                    .annotation(position: .trailing, alignment: .leading) {
-                        Text(item.amount.brl)
-                            .font(.caption2)
-                            .foregroundStyle(.secondary)
-                    }
-                }
-                .chartLegend(.hidden)
-                .chartXAxis(.hidden)
-                .chartXScale(domain: 0...(maxAmount.chartDouble * 1.35))
-                .chartYAxis {
-                    AxisMarks(position: .leading) { _ in
-                        AxisValueLabel()
-                    }
-                }
-                .frame(height: CGFloat(topCategories.count) * 42)
+                SpendingDonutView(slices: slices)
             }
         }
     }

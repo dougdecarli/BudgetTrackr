@@ -53,6 +53,8 @@ struct SummaryHeroCard: View {
                 .lineLimit(1)
                 .minimumScaleFactor(0.6)
 
+            SpendBar(income: income, spending: totals.spending)
+
             Divider()
 
             HStack(spacing: 0) {

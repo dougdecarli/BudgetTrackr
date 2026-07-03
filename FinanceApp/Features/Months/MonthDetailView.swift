@@ -10,7 +10,24 @@ struct MonthDetailView: View {
 
     @State private var pushed: MonthSection?
     @State private var activeSheet: ActiveSheet?
-    @State private var promptForTemplate: OneOffExpense?
+
+    // A query here invalidates on every context save, which re-runs this body
+    // when entries are added/removed from a presented sheet. Without it,
+    // SwiftData's to-many relationship mutations don't reliably re-render this
+    // parent view, so the dashboard tiles would stay stale (the hero card
+    // refreshes on its own because it holds an @Query too).
+    @Query private var allMonths: [Month]
+
+    /// The query-managed instance of the displayed month, so relationship reads
+    /// reflect the latest save.
+    private var liveMonth: Month {
+        allMonths.first { $0.id == month.id } ?? month
+    }
+
+    private let gridColumns = [
+        GridItem(.flexible(), spacing: 10),
+        GridItem(.flexible(), spacing: 10),
+    ]
 
     private enum MonthSection: String, Hashable {
         case income, recurring, oneOff, invoice
@@ -20,67 +37,75 @@ struct MonthDetailView: View {
         case addIncome
         case addOneOff
         case editIncome(IncomeEntry)
+        case editOneOff(OneOffExpense)
+        case editRecurring(ExpenseTemplate)
 
         var id: String {
             switch self {
             case .addIncome: return "addIncome"
             case .addOneOff: return "addOneOff"
             case .editIncome(let entry): return "editIncome-\(entry.id)"
+            case .editOneOff(let expense): return "editOneOff-\(expense.id)"
+            case .editRecurring(let template): return "editRecurring-\(template.id)"
             }
         }
     }
 
-    private var totals: SummaryMath.Totals { SummaryMath.totals(for: month) }
+    private var totals: SummaryMath.Totals { SummaryMath.totals(for: liveMonth) }
 
     var body: some View {
         ScrollView {
             VStack(spacing: 16) {
-                SummaryHeroCard(month: month)
+                SummaryHeroCard(month: liveMonth)
+
+                QuickAddBar(
+                    onAddIncome: { activeSheet = .addIncome },
+                    onAddExpense: { activeSheet = .addOneOff }
+                )
 
                 sectionHeader("Lançamentos")
 
-                VStack(spacing: 12) {
-                    DashboardCard(
+                LazyVGrid(columns: gridColumns, spacing: 10) {
+                    DashboardTile(
                         icon: "arrow.down.left",
-                        tint: .green,
+                        tint: Theme.income,
                         title: "Renda",
                         subtitle: "\(incomeCount) fontes",
                         amount: totals.income + totals.benefit,
-                        amountColor: .green
+                        amountColor: Theme.income
                     ) { pushed = .income }
 
-                    DashboardCard(
+                    DashboardTile(
                         icon: "arrow.triangle.2.circlepath",
-                        tint: .indigo,
+                        tint: Theme.recurring,
                         title: "Despesas recorrentes",
                         subtitle: "\(recurringCount) lançadas",
                         amount: totals.recurring
                     ) { pushed = .recurring }
 
-                    DashboardCard(
+                    DashboardTile(
                         icon: "cart",
-                        tint: .orange,
+                        tint: Theme.oneOff,
                         title: "Despesas avulsas",
                         subtitle: "\(oneOffCount) lançamentos",
                         amount: totals.oneOff
                     ) { pushed = .oneOff }
 
-                    DashboardCard(
+                    DashboardTile(
                         icon: "creditcard",
-                        tint: .blue,
+                        tint: Theme.card,
                         title: "Fatura do cartão",
-                        subtitle: month.invoice == nil ? "Não importada" : "Importada",
-                        amount: month.invoice?.totalAmount,
+                        subtitle: liveMonth.invoice == nil ? "Não importada" : "Importada",
+                        amount: liveMonth.invoice?.totalAmount,
                         placeholder: "Importar"
                     ) { pushed = .invoice }
                 }
 
-                CategoryBreakdownCard(month: month)
+                CategoryBreakdownCard(month: liveMonth)
             }
             .padding()
         }
         .background(Color(.systemGroupedBackground).ignoresSafeArea())
-        .navigationTitle(month.anchorDate.monthLabelPtBR)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
@@ -91,18 +116,29 @@ struct MonthDetailView: View {
                 }
                 .accessibilityLabel("Mês anterior")
             }
-            ToolbarItemGroup(placement: .topBarTrailing) {
+            ToolbarItem(placement: .principal) {
+                Button(action: onOpenCalendar) {
+                    HStack(spacing: 5) {
+                        Text(month.anchorDate.monthNamePtBR)
+                            .foregroundStyle(.primary)
+                        Text(month.anchorDate.yearLabel)
+                            .foregroundStyle(.secondary)
+                        Image(systemName: "chevron.down")
+                            .font(.caption2.weight(.bold))
+                            .foregroundStyle(.secondary)
+                    }
+                    .font(.headline)
+                }
+                .accessibilityLabel(month.anchorDate.monthLabelPtBR)
+                .accessibilityHint("Abrir calendário")
+            }
+            ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     goToAdjacentMonth(next: true)
                 } label: {
                     Image(systemName: "chevron.right")
                 }
                 .accessibilityLabel("Próximo mês")
-
-                Button(action: onOpenCalendar) {
-                    Image(systemName: "calendar")
-                }
-                .accessibilityLabel("Calendário")
             }
         }
         // Detail is a navigation push (stable, top-most screen).
@@ -118,11 +154,18 @@ struct MonthDetailView: View {
                 }
             case .recurring:
                 SectionDetailScreen("Despesas recorrentes") {
-                    RecurringSectionView(month: month)
+                    RecurringSectionView(
+                        month: month,
+                        onEdit: { activeSheet = .editRecurring($0) }
+                    )
                 }
             case .oneOff:
                 SectionDetailScreen("Despesas avulsas") {
-                    OneOffSectionView(month: month) { activeSheet = .addOneOff }
+                    OneOffSectionView(
+                        month: month,
+                        onAdd: { activeSheet = .addOneOff },
+                        onEdit: { activeSheet = .editOneOff($0) }
+                    )
                 }
             case .invoice:
                 SectionDetailScreen("Fatura do cartão") {
@@ -137,46 +180,22 @@ struct MonthDetailView: View {
             case .addIncome:
                 AddIncomeSheet(month: month)
             case .addOneOff:
-                AddOneOffSheet(month: month) { saved in promptForTemplate = saved }
+                AddOneOffSheet(month: month)
             case .editIncome(let entry):
                 AddIncomeSheet(month: month, editing: entry)
+            case .editOneOff(let expense):
+                AddOneOffSheet(month: month, editing: expense)
+            case .editRecurring(let template):
+                SetRecurringAmountSheet(month: month, template: template)
             }
         }
-        .confirmationDialog(
-            "Salvar como despesa recorrente?",
-            isPresented: Binding(
-                get: { promptForTemplate != nil },
-                set: { if !$0 { promptForTemplate = nil } }
-            ),
-            presenting: promptForTemplate
-        ) { entry in
-            Button("Salvar como recorrente") {
-                createTemplate(from: entry)
-                promptForTemplate = nil
-            }
-            Button("Não, obrigado", role: .cancel) {
-                promptForTemplate = nil
-            }
-        } message: { entry in
-            Text("\u{201C}\(entry.label)\u{201D} passa a aparecer todo mês a partir do próximo.")
-        }
-    }
-
-    private func createTemplate(from oneOff: OneOffExpense) {
-        let template = ExpenseTemplate(
-            label: oneOff.label,
-            category: oneOff.category,
-            isTicketCard: false
-        )
-        context.insert(template)
-        try? context.save()
     }
 
     // MARK: - Counts
 
-    private var incomeCount: Int { month.incomeEntries?.count ?? 0 }
-    private var recurringCount: Int { month.recurringEntries?.count ?? 0 }
-    private var oneOffCount: Int { month.oneOffs?.count ?? 0 }
+    private var incomeCount: Int { liveMonth.incomeEntries?.count ?? 0 }
+    private var recurringCount: Int { liveMonth.recurringEntries?.count ?? 0 }
+    private var oneOffCount: Int { liveMonth.oneOffs?.count ?? 0 }
 
     // MARK: - Navigation
 

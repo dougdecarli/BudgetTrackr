@@ -122,3 +122,22 @@ struct SpendingDonutView: View {
         return Money.formatPercent(ratio, fractionDigits: 0)
     }
 }
+
+#Preview {
+    let slices: [SpendingSlice] = [
+        SpendingSlice(id: UUID(), name: "Moradia", amount: 6180, color: .orange),
+        SpendingSlice(id: UUID(), name: "Crédito", amount: 4500, color: .pink),
+        SpendingSlice(id: UUID(), name: "Mercado", amount: 2000, color: .blue),
+        SpendingSlice(id: UUID(), name: "Contas", amount: 1550, color: .teal),
+        SpendingSlice(id: UUID(), name: "Transporte", amount: 900, color: .indigo),
+        SpendingSlice(id: SpendingDonut.outrosID, name: "Outros", amount: 700, color: .gray),
+    ]
+
+    return SpendingDonutView(slices: slices)
+        .padding(20)
+        .background(
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                .fill(Color(.secondarySystemGroupedBackground))
+        )
+        .padding()
+}

@@ -75,6 +75,46 @@ struct FinanceAppApp: App {
             }
             try? context.save()
         }
+
+        // Runs every launch: repairs legacy/synced data where a default
+        // category was stored under its English display name instead of the
+        // canonical pt-BR key.
+        normalizeDefaultCategoryNames(context)
+    }
+
+    /// Reverse of `CategoryLocalization`'s pt-BR→English map. Default category
+    /// names must be stored as the canonical pt-BR key so the UI can localize
+    /// them at display time; a name stored in English would otherwise show up in
+    /// English even when the app language is Portuguese.
+    private static let englishToCanonicalCategory: [String: String] = [
+        "Housing": "Moradia",
+        "Food": "Alimentação",
+        "Transport": "Transporte",
+        "Health": "Saúde",
+        "Education": "Educação",
+        "Leisure": "Lazer",
+        "Groceries": "Mercado",
+        "Bills": "Contas",
+    ]
+
+    /// Rewrites any default category stored under its English name back to the
+    /// canonical pt-BR key. Idempotent, and skips a rename that would collide
+    /// with an already-present canonical category (leaving the duplicate for the
+    /// user to remove) so it never creates a second "Moradia", etc.
+    private static func normalizeDefaultCategoryNames(_ context: ModelContext) {
+        let categories = (try? context.fetch(FetchDescriptor<Category>())) ?? []
+        var presentNames = Set(categories.map(\.name))
+        var changed = false
+        for category in categories {
+            guard let canonical = englishToCanonicalCategory[category.name],
+                  canonical != category.name,
+                  !presentNames.contains(canonical) else { continue }
+            presentNames.remove(category.name)
+            presentNames.insert(canonical)
+            category.name = canonical
+            changed = true
+        }
+        if changed { try? context.save() }
     }
 
     private static func seedDefaultCategories(_ context: ModelContext) {
@@ -94,7 +134,9 @@ struct FinanceAppApp: App {
 /// which is what SwiftUI uses to resolve localized `Text`/`Label` strings. Reads
 /// the choice from `AppSettings` so it updates live when changed in Settings.
 private struct RootView: View {
+    @Environment(\.modelContext) private var context
     @Query private var settings: [AppSettings]
+    @State private var showingOnboarding = false
 
     private var language: AppLanguage {
         settings.first?.language ?? .system
@@ -106,5 +148,26 @@ private struct RootView: View {
         Money.usesEnglish = language.isEnglishPresentation
         return RootTabView()
             .environment(\.locale, language.resolvedLocale)
+            // Gate on the settings singleton: only decide once it exists (it is
+            // created synchronously during `bootstrap`, but `onChange` also
+            // covers the case where it arrives later via iCloud sync).
+            .task { syncOnboarding() }
+            .onChange(of: settings) { _, _ in syncOnboarding() }
+            .fullScreenCover(isPresented: $showingOnboarding) {
+                OnboardingView { completeOnboarding() }
+            }
+    }
+
+    private func syncOnboarding() {
+        guard let settings = settings.first else { return }
+        if !settings.hasCompletedOnboarding {
+            showingOnboarding = true
+        }
+    }
+
+    private func completeOnboarding() {
+        settings.first?.hasCompletedOnboarding = true
+        try? context.save()
+        showingOnboarding = false
     }
 }

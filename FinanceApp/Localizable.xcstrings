@@ -1,8 +1,12 @@
 {
   "sourceLanguage" : "pt-BR",
   "strings" : {
-    "" : {},
-    "—" : {},
+    "" : {
+
+    },
+    "—" : {
+
+    },
     "“%@” está em uso por %lld item(s). Remova as referências antes de excluir." : {
       "localizations" : {
         "en" : {
@@ -24,8 +28,9 @@
         }
       }
     },
-    "%@ → %@" : {},
-    "%lld" : {},
+    "%lld" : {
+
+    },
     "%lld fontes" : {
       "localizations" : {
         "en" : {
@@ -196,6 +201,16 @@
         }
       }
     },
+    "Acompanhe seus gastos" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Track your spending"
+          }
+        }
+      }
+    },
     "Acumulado no ano" : {
       "localizations" : {
         "en" : {
@@ -205,6 +220,22 @@
           }
         }
       }
+    },
+    "Acumulado no período" : {
+
+    },
+    "Adiciona um resumo “em dinheiro” no topo do mês, que desconsidera benefícios (como vale-refeição) e os gastos pagos com eles — mostrando só o que realmente entra e sai em dinheiro." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adds a “cash” summary at the top of the month that excludes benefits (like meal vouchers) and the spending paid with them — showing only what actually moves in and out as cash."
+          }
+        }
+      }
+    },
+    "Adicionar despesa" : {
+
     },
     "Adicionar despesa avulsa" : {
       "localizations" : {
@@ -246,12 +277,25 @@
         }
       }
     },
+    "Ano" : {
+
+    },
     "Apagar" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Delete"
+          }
+        }
+      }
+    },
+    "Arquivada" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Archived"
           }
         }
       }
@@ -303,6 +347,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Benefit"
+          }
+        }
+      }
+    },
+    "Cadastre suas fontes de renda — salário, benefícios e outros — para saber quanto entra a cada mês." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add your income sources — salary, benefits and more — to see what comes in each month."
           }
         }
       }
@@ -388,7 +442,28 @@
         }
       }
     },
+    "Começar" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get started"
+          }
+        }
+      }
+    },
+    "Comece pela sua renda" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start with your income"
+          }
+        }
+      }
+    },
     "Comparação mês a mês" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -430,6 +505,7 @@
       }
     },
     "de %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -471,6 +547,7 @@
       }
     },
     "Despesa avulsa" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -521,6 +598,7 @@
       }
     },
     "É preciso ter pelo menos dois meses para comparar." : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -600,7 +678,9 @@
         }
       }
     },
-    "English" : {},
+    "English" : {
+
+    },
     "Estabelecimento" : {
       "localizations" : {
         "en" : {
@@ -651,7 +731,9 @@
         }
       }
     },
-    "Fechar" : {},
+    "Fechar" : {
+
+    },
     "Fonte" : {
       "localizations" : {
         "en" : {
@@ -731,6 +813,9 @@
           }
         }
       }
+    },
+    "Gastos por categoria · no ano" : {
+
     },
     "Idioma" : {
       "localizations" : {
@@ -882,7 +967,9 @@
         }
       }
     },
-    "Mês" : {},
+    "Mês" : {
+
+    },
     "Mês anterior" : {
       "localizations" : {
         "en" : {
@@ -1144,6 +1231,16 @@
         }
       }
     },
+    "O app já vem com categorias como Moradia, Alimentação e Transporte. Ajuste ou crie as suas em Ajustes." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The app comes with categories like Housing, Food and Transport. Adjust or create your own in Settings."
+          }
+        }
+      }
+    },
     "O item e seus lançamentos serão removidos. Esta ação não pode ser desfeita." : {
       "localizations" : {
         "en" : {
@@ -1164,7 +1261,19 @@
         }
       }
     },
-    "OK" : {},
+    "OK" : {
+
+    },
+    "Organize renda e gastos de forma simples, um mês de cada vez." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Organize income and spending simply, one month at a time."
+          }
+        }
+      }
+    },
     "Outros" : {
       "localizations" : {
         "en" : {
@@ -1196,13 +1305,45 @@
         }
       }
     },
-    "Português" : {},
+    "Português" : {
+
+    },
+    "Pronto para começar" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ready to go"
+          }
+        }
+      }
+    },
+    "Próximo" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next"
+          }
+        }
+      }
+    },
     "Próximo mês" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Next month"
+          }
+        }
+      }
+    },
+    "Pular" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skip"
           }
         }
       }
@@ -1214,6 +1355,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "$0.00"
+          }
+        }
+      }
+    },
+    "Registre despesas recorrentes (fixas), avulsas (pontuais) e a fatura do cartão, tudo separado por mês." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Log recurring (fixed) and one-off expenses, plus your card invoice — all separated by month."
           }
         }
       }
@@ -1420,6 +1571,16 @@
         }
       }
     },
+    "Sem modelo" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No template"
+          }
+        }
+      }
+    },
     "Separador decimal" : {
       "localizations" : {
         "en" : {
@@ -1430,7 +1591,22 @@
         }
       }
     },
-    "Série" : {},
+    "Série" : {
+
+    },
+    "Suas finanças, mês a mês" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your finances, month by month"
+          }
+        }
+      }
+    },
+    "Taxa" : {
+
+    },
     "Taxa de poupança" : {
       "localizations" : {
         "en" : {
@@ -1481,7 +1657,9 @@
         }
       }
     },
-    "Total" : {},
+    "Total" : {
+
+    },
     "Total da fatura" : {
       "localizations" : {
         "en" : {
@@ -1502,12 +1680,42 @@
         }
       }
     },
+    "Tudo por categoria" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Everything by category"
+          }
+        }
+      }
+    },
+    "Use a barra de adição rápida para lançar valores e acompanhe o resumo do mês no gráfico." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use the quick-add bar to enter amounts and follow your monthly summary in the chart."
+          }
+        }
+      }
+    },
     "Valor" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Amount"
+          }
+        }
+      }
+    },
+    "Ver tutorial novamente" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View tutorial again"
           }
         }
       }
@@ -1544,26 +1752,8 @@
         }
       }
     },
-    "Zero" : {},
-    "Arquivada" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Archived"
-          }
-        }
-      }
-    },
-    "Sem modelo" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No template"
-          }
-        }
-      }
+    "Zero" : {
+
     }
   },
   "version" : "1.0"

@@ -5,6 +5,11 @@ import SwiftData
 final class AppSettings {
     var id: UUID = UUID()
     var emDinheiroEnabled: Bool = false
+    /// Whether the first-launch onboarding carousel has been completed (or
+    /// skipped). Defaults to `false` — required for CloudKit compatibility — so
+    /// a brand-new install shows the tutorial once. Synced across devices via
+    /// the `AppSettings` singleton, so it won't reappear on a second device.
+    var hasCompletedOnboarding: Bool = false
     /// Persisted raw value of the selected UI language. Stored as a String (not
     /// the enum) so it stays CloudKit-compatible and tolerant of unknown values.
     /// Read/write through `language`.
@@ -17,8 +22,9 @@ final class AppSettings {
         set { languageRaw = newValue.rawValue }
     }
 
-    init(id: UUID = UUID(), emDinheiroEnabled: Bool = false) {
+    init(id: UUID = UUID(), emDinheiroEnabled: Bool = false, hasCompletedOnboarding: Bool = false) {
         self.id = id
         self.emDinheiroEnabled = emDinheiroEnabled
+        self.hasCompletedOnboarding = hasCompletedOnboarding
     }
 }

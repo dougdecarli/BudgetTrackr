@@ -4,8 +4,13 @@ import Charts
 
 struct TrendsView: View {
     @Query(sort: [SortDescriptor(\Month.anchorDate)]) private var months: [Month]
+    @Query private var settings: [AppSettings]
 
-    @State private var window: TrendsWindow = .last6
+    @State private var window: TrendsWindow = .thisYear
+
+    /// When "Em dinheiro" is on in Ajustes, every money figure drops the
+    /// benefit-funded ticket-card portion, matching the Meses dashboard.
+    private var emDinheiro: Bool { settings.first?.emDinheiroEnabled ?? false }
 
     /// Trends focus on completed months, so the in-progress current month is
     /// excluded — when it's June, the most recent month shown is May.
@@ -14,8 +19,57 @@ struct TrendsView: View {
         return months.filter { $0.anchorDate < currentAnchor }
     }
 
+    /// Completed months belonging to the current calendar year. Always the tail
+    /// of `completedMonths`, so a rolling `suffix` still describes them.
+    private var yearMonths: [Month] {
+        let calendar = Calendar.current
+        let year = calendar.component(.year, from: Date())
+        return completedMonths.filter { calendar.component(.year, from: $0.anchorDate) == year }
+    }
+
+    /// Months feeding every card. Early in the year "Ano" has too few points to
+    /// be a useful chart, so it silently falls back to the last 3 months.
     private var windowMonths: [Month] {
-        Array(completedMonths.suffix(window.count))
+        switch window {
+        case .thisYear:
+            let ym = yearMonths
+            return ym.count >= 2 ? ym : Array(completedMonths.suffix(3))
+        case .last3, .last6, .last12:
+            return Array(completedMonths.suffix(window.count))
+        }
+    }
+
+    /// The equal-length span immediately preceding `windowMonths`, used as the
+    /// baseline for category movers. "Ano" compares against the same calendar
+    /// months last year when available, otherwise the prior equal period.
+    private var previousMonths: [Month] {
+        let calendar = Calendar.current
+        if window == .thisYear {
+            let ym = yearMonths
+            if ym.count >= 2 {
+                let previousYear = calendar.component(.year, from: Date()) - 1
+                let lastMonth = ym.map { calendar.component(.month, from: $0.anchorDate) }.max() ?? 12
+                let samePeriod = completedMonths.filter {
+                    calendar.component(.year, from: $0.anchorDate) == previousYear
+                        && calendar.component(.month, from: $0.anchorDate) <= lastMonth
+                }
+                return samePeriod.isEmpty ? priorEqualPeriod(count: ym.count) : samePeriod
+            }
+            return priorEqualPeriod(count: 3)
+        }
+        return priorEqualPeriod(count: window.count)
+    }
+
+    /// The `count` completed months sitting just before the active window.
+    private func priorEqualPeriod(count: Int) -> [Month] {
+        Array(completedMonths.dropLast(windowMonths.count).suffix(count))
+    }
+
+    /// Title for the category-spending card, reflecting the active window.
+    private var categorySpendingTitle: LocalizedStringKey {
+        window == .thisYear
+            ? "Gastos por categoria · no ano"
+            : "Gastos por categoria · \(windowMonths.count) meses"
     }
 
     private var points: [TrendPoint] {
@@ -23,9 +77,9 @@ struct TrendsView: View {
             let t = SummaryMath.totals(for: month)
             return TrendPoint(
                 anchor: month.anchorDate,
-                income: t.income + t.benefit,
-                spending: t.spending,
-                net: t.netResult
+                income: emDinheiro ? t.incomeEmDinheiro : t.income + t.benefit,
+                spending: emDinheiro ? t.spendingEmDinheiro : t.spending,
+                net: emDinheiro ? t.netResultEmDinheiro : t.netResult
             )
         }
     }
@@ -56,12 +110,21 @@ struct TrendsView: View {
                     StatSummaryRow(points: points)
                     IncomeVsSpendingCard(points: points)
                     NetResultCard(points: points)
-                    CategorySpendingCard(
-                        months: windowMonths,
-                        windowCount: window.count
-                    )
-                    YTDCard(months: completedMonths)
-                    MonthComparisonCard(months: completedMonths)
+                    SavingsRateCard(points: points)
+                    CategorySpendingCard(months: windowMonths, title: categorySpendingTitle)
+                    if window == .thisYear {
+                        AccumulatedCard(
+                            title: "Acumulado no ano",
+                            months: yearMonths,
+                            emDinheiro: emDinheiro
+                        )
+                    } else {
+                        AccumulatedCard(
+                            title: "Acumulado no período",
+                            months: windowMonths,
+                            emDinheiro: emDinheiro
+                        )
+                    }
                 }
             }
             .padding()
@@ -72,6 +135,7 @@ struct TrendsView: View {
 }
 
 enum TrendsWindow: String, CaseIterable, Identifiable {
+    case thisYear
     case last3
     case last6
     case last12
@@ -79,16 +143,18 @@ enum TrendsWindow: String, CaseIterable, Identifiable {
     var id: String { rawValue }
     var label: LocalizedStringKey {
         switch self {
-        case .last3:  return "3 meses"
-        case .last6:  return "6 meses"
-        case .last12: return "12 meses"
+        case .thisYear: return "Ano"
+        case .last3:    return "3 meses"
+        case .last6:    return "6 meses"
+        case .last12:   return "12 meses"
         }
     }
     var count: Int {
         switch self {
-        case .last3:  return 3
-        case .last6:  return 6
-        case .last12: return 12
+        case .thisYear: return 12
+        case .last3:    return 3
+        case .last6:    return 6
+        case .last12:   return 12
         }
     }
 }
@@ -333,11 +399,95 @@ private struct NetResultCard: View {
     }
 }
 
+// MARK: - Taxa de poupança (line over time)
+
+private struct SavingsRateCard: View {
+    let points: [TrendPoint]
+
+    private struct RatePoint: Identifiable {
+        var id: Date { anchor }
+        let anchor: Date
+        let rate: Double
+    }
+
+    /// Savings rate per month = net ÷ income. Negative when spending outran
+    /// income; income of zero leaves the rate undefined, so it reads as 0.
+    private var ratePoints: [RatePoint] {
+        points.map { point in
+            let income = point.income.chartDouble
+            let rate = income > 0 ? point.net.chartDouble / income : 0
+            return RatePoint(anchor: point.anchor, rate: rate)
+        }
+    }
+
+    private var average: Double {
+        guard !ratePoints.isEmpty else { return 0 }
+        return ratePoints.reduce(0) { $0 + $1.rate } / Double(ratePoints.count)
+    }
+
+    var body: some View {
+        Card("Taxa de poupança") {
+            HStack {
+                Text("Média \(Money.formatPercent(average, fractionDigits: 0))")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                Spacer()
+            }
+            Chart {
+                ForEach(ratePoints) { point in
+                    AreaMark(
+                        x: .value("Mês", point.anchor, unit: .month),
+                        y: .value("Taxa", point.rate)
+                    )
+                    .interpolationMethod(.catmullRom)
+                    .foregroundStyle(
+                        .linearGradient(
+                            colors: [Color.green.opacity(0.30), Color.green.opacity(0.02)],
+                            startPoint: .top,
+                            endPoint: .bottom
+                        )
+                    )
+
+                    LineMark(
+                        x: .value("Mês", point.anchor, unit: .month),
+                        y: .value("Taxa", point.rate)
+                    )
+                    .interpolationMethod(.catmullRom)
+                    .foregroundStyle(Color.green)
+                    .symbol(.circle)
+                    .symbolSize(28)
+                }
+
+                RuleMark(y: .value("Zero", 0))
+                    .foregroundStyle(.secondary.opacity(0.4))
+                    .lineStyle(StrokeStyle(lineWidth: 1, dash: [4, 3]))
+            }
+            .chartYAxis {
+                AxisMarks(position: .leading) { value in
+                    AxisGridLine()
+                    AxisValueLabel {
+                        if let v = value.as(Double.self) {
+                            Text(Money.formatPercent(v, fractionDigits: 0))
+                        }
+                    }
+                }
+            }
+            .chartXAxis {
+                AxisMarks(values: .stride(by: .month)) { _ in
+                    AxisGridLine()
+                    AxisValueLabel(format: .dateTime.month(.abbreviated).locale(Money.locale))
+                }
+            }
+            .frame(height: 180)
+        }
+    }
+}
+
 // MARK: - Gastos por categoria (horizontal bars)
 
 private struct CategorySpendingCard: View {
     let months: [Month]
-    let windowCount: Int
+    let title: LocalizedStringKey
 
     private var slices: [SpendingSlice] {
         var buckets: [UUID: (Category, Decimal)] = [:]
@@ -353,7 +503,7 @@ private struct CategorySpendingCard: View {
     }
 
     var body: some View {
-        Card("Gastos por categoria · \(windowCount) meses") {
+        Card(title) {
             if slices.isEmpty {
                 Text("Sem gastos no período.")
                     .font(.callout)
@@ -365,16 +515,18 @@ private struct CategorySpendingCard: View {
     }
 }
 
-// MARK: - Acumulado no ano (YTD + savings rate)
+// MARK: - Acumulado (period totals + savings rate)
 
-private struct YTDCard: View {
+/// Accumulated income / spending / result plus the savings rate for whatever
+/// months it's handed — the current year under "Ano", the selected span otherwise.
+private struct AccumulatedCard: View {
+    let title: LocalizedStringKey
     let months: [Month]
+    let emDinheiro: Bool
 
-    private var ytd: SummaryMath.Totals {
-        let calendar = Calendar.current
-        let year = calendar.component(.year, from: Date())
+    private var totals: SummaryMath.Totals {
         var sum = SummaryMath.Totals()
-        for month in months where calendar.component(.year, from: month.anchorDate) == year {
+        for month in months {
             let t = SummaryMath.totals(for: month)
             sum.income += t.income
             sum.benefit += t.benefit
@@ -387,20 +539,22 @@ private struct YTDCard: View {
         return sum
     }
 
+    private var income: Decimal { emDinheiro ? totals.incomeEmDinheiro : totals.income + totals.benefit }
+    private var spending: Decimal { emDinheiro ? totals.spendingEmDinheiro : totals.spending }
+    private var net: Decimal { emDinheiro ? totals.netResultEmDinheiro : totals.netResult }
+
     private var savingsRate: Double {
-        let income = ytd.income + ytd.benefit
         guard income > 0 else { return 0 }
-        return max(0, min(1, (ytd.netResult / income).chartDouble))
+        return max(0, min(1, (net / income).chartDouble))
     }
 
     var body: some View {
-        let t = ytd
-        Card("Acumulado no ano") {
+        Card(title) {
             VStack(spacing: 8) {
-                row("Renda", t.income + t.benefit)
-                row("Gastos", -t.spending)
-                row("Resultado", t.netResult, emphasis: true,
-                    tint: t.netResult < 0 ? .red : .green)
+                row("Renda", income)
+                row("Gastos", -spending)
+                row("Resultado", net, emphasis: true,
+                    tint: net < 0 ? .red : .green)
             }
 
             Divider()
@@ -433,71 +587,6 @@ private struct YTDCard: View {
                 .monospacedDigit()
                 .fontWeight(emphasis ? .semibold : .regular)
                 .foregroundStyle(tint ?? .primary)
-        }
-    }
-}
-
-// MARK: - Comparação mês a mês
-
-private struct MonthComparisonCard: View {
-    let months: [Month]
-
-    var body: some View {
-        Card("Comparação mês a mês") {
-            let recent = Array(months.suffix(2))
-            if recent.count < 2 {
-                Text("É preciso ter pelo menos dois meses para comparar.")
-                    .font(.callout)
-                    .foregroundStyle(.secondary)
-            } else {
-                let prev = SummaryMath.totals(for: recent[0])
-                let cur = SummaryMath.totals(for: recent[1])
-
-                HStack {
-                    Spacer()
-                    Text("\(recent[0].anchorDate.shortMonthLabelPtBR) → \(recent[1].anchorDate.shortMonthLabelPtBR)")
-                        .font(.caption2)
-                        .foregroundStyle(.secondary)
-                }
-
-                metricRow("Renda", cur: cur.income + cur.benefit, prev: prev.income + prev.benefit,
-                          higherIsBetter: true) { $0.brl }
-                metricRow("Gastos", cur: cur.spending, prev: prev.spending,
-                          higherIsBetter: false) { Money.formatSigned(-$0) }
-                metricRow("Resultado", cur: cur.netResult, prev: prev.netResult,
-                          higherIsBetter: true, emphasis: true) { Money.formatSigned($0) }
-            }
-        }
-    }
-
-    @ViewBuilder
-    private func metricRow(
-        _ label: LocalizedStringKey,
-        cur: Decimal,
-        prev: Decimal,
-        higherIsBetter: Bool,
-        emphasis: Bool = false,
-        display: (Decimal) -> String
-    ) -> some View {
-        HStack {
-            Text(label)
-                .font(.subheadline)
-                .fontWeight(emphasis ? .semibold : .regular)
-            Spacer()
-            VStack(alignment: .trailing, spacing: 1) {
-                Text(display(cur))
-                    .font(.subheadline)
-                    .monospacedDigit()
-                    .fontWeight(emphasis ? .semibold : .regular)
-                Text("de \(display(prev))")
-                    .font(.caption2)
-                    .foregroundStyle(.secondary)
-            }
-            DeltaBadge(
-                delta: SummaryMath.percentDelta(current: cur, previous: prev),
-                higherIsBetter: higherIsBetter
-            )
-            .frame(width: 66, alignment: .trailing)
         }
     }
 }

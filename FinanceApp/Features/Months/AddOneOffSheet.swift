@@ -92,7 +92,7 @@ struct AddOneOffSheet: View {
             }
             .padding()
             .background(Color(.systemGroupedBackground).ignoresSafeArea())
-            .navigationTitle(editing == nil ? "Despesa avulsa" : "Editar despesa")
+            .navigationTitle(editing == nil ? "Adicionar despesa" : "Editar despesa")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {

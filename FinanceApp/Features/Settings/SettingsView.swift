@@ -3,6 +3,7 @@ import SwiftData
 
 struct SettingsView: View {
     @Query private var settings: [AppSettings]
+    @State private var showingOnboarding = false
 
     var body: some View {
         Form {
@@ -29,13 +30,17 @@ struct SettingsView: View {
                 }
             }
 
-            Section("Visualização") {
+            Section {
                 if let settings = settings.first {
                     @Bindable var bindable = settings
                     Toggle(isOn: $bindable.emDinheiroEnabled) {
                         Label("Mostrar valor \u{201C}em dinheiro\u{201D}", systemImage: "banknote")
                     }
                 }
+            } header: {
+                Text("Visualização")
+            } footer: {
+                Text("Adiciona um resumo \u{201C}em dinheiro\u{201D} no topo do mês, que desconsidera benefícios (como vale-refeição) e os gastos pagos com eles — mostrando só o que realmente entra e sai em dinheiro.")
             }
 
             Section("Idioma") {
@@ -63,8 +68,19 @@ struct SettingsView: View {
                     Label("Arquivados", systemImage: "archivebox")
                 }
             }
+
+            Section {
+                Button {
+                    showingOnboarding = true
+                } label: {
+                    Label("Ver tutorial novamente", systemImage: "questionmark.circle")
+                }
+            }
         }
         .navigationTitle("Ajustes")
+        .fullScreenCover(isPresented: $showingOnboarding) {
+            OnboardingView { showingOnboarding = false }
+        }
     }
 }
 

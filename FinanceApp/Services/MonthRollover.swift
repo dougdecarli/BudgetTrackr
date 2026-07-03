@@ -6,8 +6,12 @@ enum MonthRollover {
     @discardableResult
     static func resolve(anchor: Date, in context: ModelContext) -> Month {
         let normalized = anchor.monthAnchor
+        // Sorted by createdAt so that if a duplicate exists (from a CloudKit
+        // sync race), we return the original — the same record `DataDeduplication`
+        // keeps as canonical — not a freshly-created empty one.
         let descriptor = FetchDescriptor<Month>(
-            predicate: #Predicate { $0.anchorDate == normalized }
+            predicate: #Predicate { $0.anchorDate == normalized },
+            sortBy: [SortDescriptor(\.createdAt)]
         )
         if let existing = (try? context.fetch(descriptor))?.first {
             return existing

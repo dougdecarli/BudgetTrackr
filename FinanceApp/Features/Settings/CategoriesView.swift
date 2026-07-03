@@ -23,7 +23,7 @@ struct CategoriesView: View {
                         editing = category
                     } label: {
                         HStack {
-                            Text(category.name).foregroundStyle(.primary)
+                            CategoryNameText(category.name).foregroundStyle(.primary)
                             Spacer()
                             if category.referenceCount > 0 {
                                 Text("\(category.referenceCount)")

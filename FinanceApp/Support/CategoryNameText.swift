@@ -12,7 +12,9 @@ struct CategoryNameText: View {
 
     var body: some View {
         if let name, !name.isEmpty {
-            Text(name)
+            // Localized so default (seeded) category names follow the app's
+            // language; custom names fall back to their literal text.
+            Text(LocalizedStringKey(name))
         } else {
             Text("Sem categoria")
         }

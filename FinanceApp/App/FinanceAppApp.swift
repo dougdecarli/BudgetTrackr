@@ -63,13 +63,29 @@ struct FinanceAppApp: App {
         let descriptor = FetchDescriptor<AppSettings>(sortBy: [SortDescriptor(\.id)])
         let existing = (try? context.fetch(descriptor)) ?? []
         if existing.isEmpty {
+            // Very first launch: create the settings singleton and seed a
+            // starter set of categories so a new user can log an expense right
+            // away without having to create categories first.
             context.insert(AppSettings())
+            seedDefaultCategories(context)
             try? context.save()
         } else if existing.count > 1 {
             for duplicate in existing.dropFirst() {
                 context.delete(duplicate)
             }
             try? context.save()
+        }
+    }
+
+    private static func seedDefaultCategories(_ context: ModelContext) {
+        let count = (try? context.fetchCount(FetchDescriptor<Category>())) ?? 0
+        guard count == 0 else { return }
+        // Stored as the canonical (pt-BR) key; the UI localizes it at display
+        // time via `Text(LocalizedStringKey:)`, so these follow the app's
+        // language switch. The user can still rename or delete them.
+        let defaults = ["Moradia", "Alimentação", "Transporte", "Saúde", "Educação", "Lazer", "Mercado", "Contas"]
+        for name in defaults {
+            context.insert(Category(name: name))
         }
     }
 }

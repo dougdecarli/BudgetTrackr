@@ -44,6 +44,11 @@ struct MonthCalendarView: View {
          calendar.component(.month, from: currentMonth.anchorDate))
     }
 
+    private var todayYM: (year: Int, month: Int) {
+        (calendar.component(.year, from: Date()),
+         calendar.component(.month, from: Date()))
+    }
+
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -51,6 +56,8 @@ struct MonthCalendarView: View {
                     ForEach(yearsToShow, id: \.self) { year in
                         yearSection(year)
                     }
+                    legend
+                        .padding(.top, 4)
                 }
                 .padding()
             }
@@ -64,15 +71,33 @@ struct MonthCalendarView: View {
         }
     }
 
+    private var legend: some View {
+        HStack(spacing: 18) {
+            HStack(spacing: 6) {
+                Circle().fill(Color.accentColor).frame(width: 6, height: 6)
+                Text("Com lançamentos")
+            }
+            HStack(spacing: 6) {
+                RoundedRectangle(cornerRadius: 4, style: .continuous)
+                    .stroke(Color.accentColor, lineWidth: 1.5)
+                    .frame(width: 14, height: 14)
+                Text("Mês atual")
+            }
+            Spacer()
+        }
+        .font(.caption2)
+        .foregroundStyle(.secondary)
+    }
+
     @ViewBuilder
     private func yearSection(_ year: Int) -> some View {
         let withData = monthsWithData(in: year)
         VStack(alignment: .leading, spacing: 12) {
             Text(String(year))
-                .font(.title3.weight(.semibold))
+                .font(.title3.weight(.bold))
             LazyVGrid(
-                columns: Array(repeating: GridItem(.flexible(), spacing: 12), count: 4),
-                spacing: 16
+                columns: Array(repeating: GridItem(.flexible(), spacing: 10), count: 4),
+                spacing: 10
             ) {
                 ForEach(0..<12, id: \.self) { idx in
                     let monthNum = idx + 1
@@ -81,6 +106,7 @@ struct MonthCalendarView: View {
                         month: monthNum,
                         label: monthAbbrevs[idx],
                         isSelected: currentYM == (year, monthNum),
+                        isCurrent: todayYM == (year, monthNum),
                         hasData: withData.contains(monthNum)
                     )
                 }
@@ -88,25 +114,39 @@ struct MonthCalendarView: View {
         }
     }
 
-    private func monthCell(year: Int, month: Int, label: String, isSelected: Bool, hasData: Bool) -> some View {
-        Button {
+    private func monthCell(
+        year: Int,
+        month: Int,
+        label: String,
+        isSelected: Bool,
+        isCurrent: Bool,
+        hasData: Bool
+    ) -> some View {
+        let foreground: Color = isSelected ? .white : (isCurrent ? .accentColor : .primary)
+        return Button {
             pick(year: year, month: month)
         } label: {
-            VStack(spacing: 6) {
-                Text(label)
-                    .font(.body)
-                    .fontWeight(isSelected ? .semibold : .regular)
-                    .foregroundStyle(isSelected ? Color.white : Color.primary)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 10)
-                    .background(
-                        RoundedRectangle(cornerRadius: 10)
-                            .fill(isSelected ? Color.accentColor : Color.gray.opacity(0.12))
-                    )
-                Circle()
-                    .fill(hasData ? Color.accentColor : Color.clear)
-                    .frame(width: 6, height: 6)
-            }
+            Text(label)
+                .font(.callout)
+                .fontWeight(isSelected || isCurrent ? .semibold : .regular)
+                .foregroundStyle(foreground)
+                .frame(maxWidth: .infinity, minHeight: 50)
+                .background(
+                    RoundedRectangle(cornerRadius: 12, style: .continuous)
+                        .fill(isSelected ? Color.accentColor : Color(.secondarySystemGroupedBackground))
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12, style: .continuous)
+                        .stroke(isCurrent && !isSelected ? Color.accentColor : .clear, lineWidth: 1.5)
+                )
+                .overlay(alignment: .topTrailing) {
+                    if hasData {
+                        Circle()
+                            .fill(isSelected ? Color.white : Color.accentColor)
+                            .frame(width: 6, height: 6)
+                            .padding(7)
+                    }
+                }
         }
         .buttonStyle(.plain)
     }

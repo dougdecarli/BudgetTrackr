@@ -34,7 +34,8 @@ enum Money {
     }
 
     /// Compact currency for tight spots (e.g. chart legends): thousands collapse
-    /// to "k" — `R$ 6,2k` / `$ 6.2k`. Values under 1.000 are shown in full.
+    /// to "k" with up to two decimals, trailing zeros dropped — `R$ 1,55k`,
+    /// `R$ 4,5k`, `R$ 2k`. Values under 1.000 are shown in full.
     static func compact(_ value: Decimal) -> String {
         let symbol = presentationLocale.currencySymbol ?? ""
         let prefix = symbol.isEmpty ? "" : "\(symbol)\u{00A0}"
@@ -43,11 +44,13 @@ enum Money {
         guard abs(double) >= 1000 else {
             return prefix + String(format: "%.0f", double)
         }
+        var number = String(format: "%.2f", double / 1000)
+        if number.contains(".") {
+            while number.hasSuffix("0") { number.removeLast() }
+            if number.hasSuffix(".") { number.removeLast() }
+        }
         let separator = presentationLocale.decimalSeparator ?? "."
-        let thousands = ((double / 1000) * 10).rounded() / 10
-        let number = thousands == thousands.rounded()
-            ? String(format: "%.0f", thousands)
-            : String(format: "%.1f", thousands).replacingOccurrences(of: ".", with: separator)
+        number = number.replacingOccurrences(of: ".", with: separator)
         return "\(prefix)\(number)k"
     }
 

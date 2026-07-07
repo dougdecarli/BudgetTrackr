@@ -17,7 +17,7 @@ final class Month {
     var oneOffs: [OneOffExpense]? = []
 
     @Relationship(deleteRule: .cascade, inverse: \CreditCardInvoice.month)
-    var invoice: CreditCardInvoice? = nil
+    var invoices: [CreditCardInvoice]? = []
 
     @Relationship(inverse: \ExpenseTemplate.skippedFromMonths)
     var skippedTemplates: [ExpenseTemplate]? = []

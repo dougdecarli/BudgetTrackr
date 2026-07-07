@@ -1,8 +1,9 @@
 import SwiftUI
 
 /// A one-time, first-launch tutorial presented as a swipeable carousel. Explains
-/// the core concepts — income, expenses (recurring / one-off / card invoice) and
-/// categories — mirroring the real dashboard vocabulary. Purely presentational:
+/// the core concepts — income, expenses (recurring / one-off), importing and
+/// auto-categorizing the card invoice, and categories — mirroring the real
+/// dashboard vocabulary. Purely presentational:
 /// the caller decides what to do when it finishes (mark onboarding complete on
 /// first launch, or simply dismiss when re-opened from Ajustes).
 struct OnboardingView: View {
@@ -84,17 +85,29 @@ private struct OnboardingPage {
             icon: "arrow.up.right.circle.fill",
             tint: Theme.spending,
             title: "Acompanhe seus gastos",
-            body: "Registre despesas recorrentes (fixas), avulsas (pontuais) e a fatura do cartão, tudo separado por mês."
+            body: "Registre despesas recorrentes (fixas) e avulsas (pontuais), tudo separado por mês."
+        ),
+        OnboardingPage(
+            icon: "creditcard.and.123",
+            tint: Theme.card,
+            title: "Importe a fatura do cartão",
+            body: "Envie o PDF da fatura do Nubank, Itaú ou Santander — inclusive as protegidas por senha — e o app lê cada compra para você."
+        ),
+        OnboardingPage(
+            icon: "wand.and.stars",
+            tint: Theme.recurring,
+            title: "Categorização automática",
+            body: "Cada compra da fatura é categorizada sozinha pelo nome da loja. Ajuste uma vez e o app aprende para as próximas."
         ),
         OnboardingPage(
             icon: "tag.fill",
             tint: Theme.oneOff,
             title: "Tudo por categoria",
-            body: "O app já vem com categorias como Moradia, Alimentação e Transporte. Ajuste ou crie as suas em Ajustes."
+            body: "Gastos avulsos e da fatura entram no mesmo resumo por categoria — Moradia, Alimentação, Transporte. Ajuste ou crie as suas em Ajustes."
         ),
         OnboardingPage(
             icon: "chart.pie.fill",
-            tint: Theme.recurring,
+            tint: Theme.income,
             title: "Pronto para começar",
             body: "Use a barra de adição rápida para lançar valores e acompanhe o resumo do mês no gráfico."
         ),

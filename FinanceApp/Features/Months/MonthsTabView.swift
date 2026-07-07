@@ -19,8 +19,14 @@ struct MonthsTabView: View {
             if let month = displayedMonth {
                 MonthDetailView(month: month) {
                     showingCalendar = true
-                } onSelectMonth: { picked in
-                    displayedMonth = picked
+                } onStepMonth: { next in
+                    // Compute from the authoritative `displayedMonth`, not the
+                    // child's `month`, so a stale toolbar closure can't step from
+                    // the wrong month (or the current one, doing nothing).
+                    guard let current = displayedMonth else { return }
+                    let anchor = next ? current.anchorDate.nextMonthAnchor
+                                      : current.anchorDate.previousMonthAnchor
+                    displayedMonth = MonthRollover.resolve(anchor: anchor, in: context)
                 }
             } else {
                 ProgressView()

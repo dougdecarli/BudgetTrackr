@@ -10,6 +10,9 @@
     "·" : {
 
     },
+    "· %lld a revisar" : {
+
+    },
     "“%@” está em uso por %lld item(s). Remova as referências antes de excluir." : {
       "localizations" : {
         "en" : {
@@ -34,6 +37,16 @@
     "%lld" : {
 
     },
+    "%lld %@" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld %2$@"
+          }
+        }
+      }
+    },
     "%lld de %lld" : {
       "localizations" : {
         "pt-BR" : {
@@ -43,6 +56,9 @@
           }
         }
       }
+    },
+    "%lld faturas" : {
+
     },
     "%lld fontes" : {
       "localizations" : {
@@ -174,6 +190,9 @@
         }
       }
     },
+    "1 fatura" : {
+
+    },
     "3 meses" : {
       "localizations" : {
         "en" : {
@@ -203,9 +222,6 @@
           }
         }
       }
-    },
-    "A revisar · %lld" : {
-
     },
     "Abrir" : {
 
@@ -275,6 +291,9 @@
           }
         }
       }
+    },
+    "Adicionar lançamento" : {
+
     },
     "Adicionar renda" : {
       "localizations" : {
@@ -383,6 +402,12 @@
         }
       }
     },
+    "Bônus" : {
+
+    },
+    "Cada compra da fatura é categorizada sozinha pelo nome da loja. Ajuste uma vez e o app aprende para as próximas." : {
+
+    },
     "Cadastre suas fontes de renda — salário, benefícios e outros — para saber quanto entra a cada mês." : {
       "localizations" : {
         "en" : {
@@ -464,10 +489,10 @@
         }
       }
     },
-    "Categorizadas" : {
+    "Categorização automática" : {
 
     },
-    "Categorizadas · %lld" : {
+    "Categorizadas" : {
 
     },
     "Categorizar" : {
@@ -558,6 +583,9 @@
         }
       }
     },
+    "Data" : {
+
+    },
     "de %@" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -589,6 +617,9 @@
           }
         }
       }
+    },
+    "Descrição" : {
+
     },
     "Despesa" : {
       "localizations" : {
@@ -630,6 +661,9 @@
           }
         }
       }
+    },
+    "Despesas do mês" : {
+
     },
     "Despesas recorrentes" : {
       "localizations" : {
@@ -712,6 +746,9 @@
         }
       }
     },
+    "Editar valor" : {
+
+    },
     "Educação" : {
       "localizations" : {
         "en" : {
@@ -733,6 +770,9 @@
       }
     },
     "English" : {
+
+    },
+    "Envie o PDF da fatura do Nubank, Itaú ou Santander — inclusive as protegidas por senha — e o app lê cada compra para você." : {
 
     },
     "Estabelecimento" : {
@@ -788,6 +828,9 @@
         }
       }
     },
+    "Fatura importada" : {
+
+    },
     "Fatura protegida" : {
 
     },
@@ -833,6 +876,9 @@
           }
         }
       }
+    },
+    "Gastos avulsos e da fatura entram no mesmo resumo por categoria — Moradia, Alimentação, Transporte. Ajuste ou crie as suas em Ajustes." : {
+
     },
     "Gastos por categoria" : {
       "localizations" : {
@@ -898,6 +944,7 @@
       }
     },
     "Importada" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -908,6 +955,7 @@
       }
     },
     "Importada em %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -926,6 +974,9 @@
           }
         }
       }
+    },
+    "Importar fatura" : {
+
     },
     "Importar fatura (em breve)" : {
       "extractionState" : "stale",
@@ -1311,7 +1362,11 @@
         }
       }
     },
+    "Novo lançamento" : {
+
+    },
     "O app já vem com categorias como Moradia, Alimentação e Transporte. Ajuste ou crie as suas em Ajustes." : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1342,6 +1397,9 @@
       }
     },
     "OK" : {
+
+    },
+    "Opções da fatura" : {
 
     },
     "Organize renda e gastos de forma simples, um mês de cada vez." : {
@@ -1449,7 +1507,11 @@
         }
       }
     },
+    "Registre despesas recorrentes (fixas) e avulsas (pontuais), tudo separado por mês." : {
+
+    },
     "Registre despesas recorrentes (fixas), avulsas (pontuais) e a fatura do cartão, tudo separado por mês." : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1488,9 +1550,6 @@
           }
         }
       }
-    },
-    "Reimportar PDF" : {
-
     },
     "Remover" : {
       "localizations" : {
@@ -1620,7 +1679,7 @@
         }
       }
     },
-    "Selecione o PDF da fatura do Nubank, Itaú ou Santander. Cada compra aparece aqui para você categorizar — e entra no total de gastos do mês." : {
+    "Selecione o PDF da fatura do Nubank, Itaú ou Santander. Cada compra aparece aqui para você categorizar — e entra no total de gastos do mês. Você pode importar mais de um cartão." : {
 
     },
     "Selecione…" : {
@@ -1777,6 +1836,12 @@
           }
         }
       }
+    },
+    "Total das faturas" : {
+
+    },
+    "Total de despesas" : {
+
     },
     "Transporte" : {
       "localizations" : {

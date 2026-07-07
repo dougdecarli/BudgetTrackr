@@ -45,11 +45,9 @@ enum DataDeduplication {
         for entry in dup.recurringEntries ?? [] { entry.month = keep }
         for expense in dup.oneOffs ?? [] { expense.month = keep }
 
-        if keep.invoice == nil {
-            dup.invoice?.month = keep
-        } else if let invoice = dup.invoice {
-            context.delete(invoice)
-        }
+        // A month can now hold several card invoices, so move them all onto the
+        // survivor instead of picking one.
+        for invoice in dup.invoices ?? [] { invoice.month = keep }
 
         let existing = Set((keep.skippedTemplates ?? []).map(\.id))
         let added = (dup.skippedTemplates ?? []).filter { !existing.contains($0.id) }

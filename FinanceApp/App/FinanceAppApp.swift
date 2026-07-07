@@ -87,7 +87,7 @@ struct FinanceAppApp: App {
         backfillShoppingCategories(context)
     }
 
-    private static let shoppingCategories = ["Vestuário", "Compras"]
+    private static let shoppingCategories = ["Compras"]
 
     /// Inserts the shopping-related categories once, if missing, for an existing
     /// install. Gated on an `AppSettings` flag so a category the user later
@@ -148,7 +148,7 @@ struct FinanceAppApp: App {
         // Stored as the canonical (pt-BR) key; the UI localizes it at display
         // time via `Text(LocalizedStringKey:)`, so these follow the app's
         // language switch. The user can still rename or delete them.
-        let defaults = ["Moradia", "Alimentação", "Transporte", "Saúde", "Educação", "Lazer", "Mercado", "Contas", "Vestuário", "Compras"]
+        let defaults = ["Moradia", "Alimentação", "Transporte", "Saúde", "Educação", "Lazer", "Mercado", "Contas", "Compras"]
         for name in defaults {
             context.insert(Category(name: name))
         }

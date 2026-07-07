@@ -6,25 +6,44 @@ import SwiftData
 struct CategoryBreakdownCard: View {
     let month: Month
 
+    @State private var showingDetail = false
+
     private var slices: [SpendingSlice] {
         SpendingDonut.slices(from: SummaryMath.categoryBreakdown(for: month))
     }
 
     var body: some View {
         if !slices.isEmpty {
-            VStack(alignment: .leading, spacing: 16) {
-                Text("Para onde foi")
-                    .font(.subheadline.weight(.semibold))
-                    .foregroundStyle(.secondary)
+            Button {
+                showingDetail = true
+            } label: {
+                VStack(alignment: .leading, spacing: 16) {
+                    HStack {
+                        Text("Para onde foi")
+                            .font(.subheadline.weight(.semibold))
+                            .foregroundStyle(.secondary)
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .font(.caption.weight(.semibold))
+                            .foregroundStyle(.tertiary)
+                    }
 
-                SpendingDonutView(slices: slices)
+                    SpendingDonutView(slices: slices)
+                }
+                .padding(20)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(
+                    RoundedRectangle(cornerRadius: Theme.cardRadius, style: .continuous)
+                        .fill(Color(.secondarySystemGroupedBackground))
+                )
+                .contentShape(Rectangle())
             }
-            .padding(20)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(
-                RoundedRectangle(cornerRadius: Theme.cardRadius, style: .continuous)
-                    .fill(Color(.secondarySystemGroupedBackground))
-            )
+            .buttonStyle(.plain)
+            .sheet(isPresented: $showingDetail) {
+                MonthExpensesDetailSheet(
+                    groups: SummaryMath.categorizedExpenseGroups(for: month)
+                )
+            }
         }
     }
 }

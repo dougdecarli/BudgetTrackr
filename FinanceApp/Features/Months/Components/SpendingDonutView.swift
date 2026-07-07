@@ -49,12 +49,32 @@ struct SpendingDonutView: View {
     @Environment(\.locale) private var locale
     let slices: [SpendingSlice]
 
+    /// Drives the entrance animation: the ring spins and scales in, then the
+    /// center total fades up. Replays when the slice set changes (e.g. switching
+    /// months) so the donut feels alive rather than static.
+    @State private var appeared = false
+
     private var total: Decimal { slices.reduce(0) { $0 + $1.amount } }
+
+    /// Identity of the current slice set — animation replays when this changes.
+    private var sliceKey: [UUID] { slices.map(\.id) }
 
     var body: some View {
         HStack(alignment: .center, spacing: 16) {
             donut
             legend
+        }
+        .onAppear {
+            appeared = false
+            withAnimation(.spring(response: 0.6, dampingFraction: 0.72)) {
+                appeared = true
+            }
+        }
+        .onChange(of: sliceKey) { _, _ in
+            appeared = false
+            withAnimation(.spring(response: 0.6, dampingFraction: 0.72)) {
+                appeared = true
+            }
         }
     }
 
@@ -69,6 +89,9 @@ struct SpendingDonutView: View {
             .foregroundStyle(slice.color)
         }
         .chartLegend(.hidden)
+        .rotationEffect(.degrees(appeared ? 0 : -120))
+        .scaleEffect(appeared ? 1 : 0.55)
+        .opacity(appeared ? 1 : 0)
         .frame(width: 130, height: 130)
         .overlay {
             VStack(spacing: 1) {
@@ -83,6 +106,7 @@ struct SpendingDonutView: View {
                     .minimumScaleFactor(0.5)
             }
             .frame(width: 82)
+            .opacity(appeared ? 1 : 0)
         }
         .accessibilityLabel("Para onde foi")
     }

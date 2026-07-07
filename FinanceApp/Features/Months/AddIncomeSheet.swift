@@ -144,6 +144,7 @@ struct AddIncomeSheet: View {
     private static func icon(for type: IncomeType) -> String {
         switch type {
         case .income:  return "briefcase.fill"
+        case .bonus:   return "sparkles"
         case .benefit: return "gift.fill"
         case .tax:     return "building.columns.fill"
         case .other:   return "square.grid.2x2.fill"
@@ -153,6 +154,7 @@ struct AddIncomeSheet: View {
     private static func tint(for type: IncomeType) -> Color {
         switch type {
         case .income:  return .green
+        case .bonus:   return .orange
         case .benefit: return .teal
         case .tax:     return .red
         case .other:   return .indigo

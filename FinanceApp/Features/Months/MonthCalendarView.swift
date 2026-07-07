@@ -36,7 +36,7 @@ struct MonthCalendarView: View {
         !(m.incomeEntries?.isEmpty ?? true)
             || !(m.recurringEntries?.isEmpty ?? true)
             || !(m.oneOffs?.isEmpty ?? true)
-            || m.invoice != nil
+            || !(m.invoices?.isEmpty ?? true)
     }
 
     private var currentYM: (year: Int, month: Int) {

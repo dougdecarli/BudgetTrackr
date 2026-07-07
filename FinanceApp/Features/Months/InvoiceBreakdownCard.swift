@@ -6,6 +6,9 @@ import SwiftUI
 struct InvoiceBreakdownCard: View {
     /// Categories with their invoice total, sorted descending by amount.
     let rows: [(category: Category, amount: Decimal)]
+    /// When set, each row becomes tappable to drill into that category's
+    /// invoice transactions.
+    var onSelect: ((Category) -> Void)? = nil
 
     private var maxAmount: Decimal {
         rows.map(\.amount).max() ?? 0
@@ -18,11 +21,18 @@ struct InvoiceBreakdownCard: View {
 
             VStack(spacing: 18) {
                 ForEach(rows, id: \.category.id) { row in
-                    InvoiceBreakdownRow(
+                    let content = InvoiceBreakdownRow(
                         category: row.category,
                         amount: row.amount,
-                        fraction: fraction(for: row.amount)
+                        fraction: fraction(for: row.amount),
+                        showsChevron: onSelect != nil
                     )
+                    if let onSelect {
+                        Button { onSelect(row.category) } label: { content }
+                            .buttonStyle(.plain)
+                    } else {
+                        content
+                    }
                 }
             }
         }
@@ -45,6 +55,7 @@ private struct InvoiceBreakdownRow: View {
     let category: Category
     let amount: Decimal
     let fraction: Double
+    var showsChevron: Bool = false
 
     private var tint: Color { Theme.tint(for: category.id) }
 
@@ -59,7 +70,7 @@ private struct InvoiceBreakdownRow: View {
             .frame(width: 44, height: 44)
 
             VStack(alignment: .leading, spacing: 8) {
-                HStack {
+                HStack(spacing: 8) {
                     CategoryNameText(category.name)
                         .font(.body.weight(.medium))
                         .foregroundStyle(.primary)
@@ -68,10 +79,16 @@ private struct InvoiceBreakdownRow: View {
                         .font(.body.weight(.medium))
                         .monospacedDigit()
                         .foregroundStyle(.primary)
+                    if showsChevron {
+                        Image(systemName: "chevron.right")
+                            .font(.caption2.weight(.semibold))
+                            .foregroundStyle(.tertiary)
+                    }
                 }
                 bar
             }
         }
+        .contentShape(Rectangle())
     }
 
     private var bar: some View {

@@ -5,8 +5,12 @@ struct MonthDetailView: View {
     @Environment(\.modelContext) private var context
     let month: Month
     let onOpenCalendar: () -> Void
-    /// Rebinds the displayed month in the parent (owned by `MonthsTabView`).
-    let onSelectMonth: (Month) -> Void
+    /// Steps the displayed month by one (`true` = next, `false` = previous). The
+    /// parent (`MonthsTabView`) owns the current month and computes the target
+    /// from its own authoritative state — computing it here from `month` risks a
+    /// stale value, since SwiftUI does not always rebuild toolbar closures when
+    /// the view updates, which would make the arrow appear to do nothing.
+    let onStepMonth: (Bool) -> Void
 
     @State private var pushed: MonthSection?
     @State private var activeSheet: ActiveSheet?
@@ -95,8 +99,8 @@ struct MonthDetailView: View {
                         icon: "creditcard",
                         tint: Theme.card,
                         title: "Fatura do cartão",
-                        subtitle: liveMonth.invoice == nil ? "Não importada" : "Importada",
-                        amount: liveMonth.invoice?.totalAmount,
+                        subtitle: invoiceSubtitle,
+                        amount: invoiceCount == 0 ? nil : invoiceTotal,
                         placeholder: "Importar"
                     ) { pushed = .invoice }
                 }
@@ -110,9 +114,10 @@ struct MonthDetailView: View {
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Button {
-                    goToAdjacentMonth(next: false)
+                    onStepMonth(false)
                 } label: {
                     Image(systemName: "chevron.left")
+                        .contentShape(Rectangle())
                 }
                 .accessibilityLabel("Mês anterior")
             }
@@ -134,9 +139,10 @@ struct MonthDetailView: View {
             }
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
-                    goToAdjacentMonth(next: true)
+                    onStepMonth(true)
                 } label: {
                     Image(systemName: "chevron.right")
+                        .contentShape(Rectangle())
                 }
                 .accessibilityLabel("Próximo mês")
             }
@@ -194,14 +200,18 @@ struct MonthDetailView: View {
     private var incomeCount: Int { liveMonth.incomeEntries?.count ?? 0 }
     private var recurringCount: Int { liveMonth.recurringEntries?.count ?? 0 }
     private var oneOffCount: Int { liveMonth.oneOffs?.count ?? 0 }
+    private var invoiceCount: Int { liveMonth.invoices?.count ?? 0 }
+    private var invoiceTotal: Decimal { (liveMonth.invoices ?? []).reduce(0) { $0 + $1.totalAmount } }
+
+    private var invoiceSubtitle: LocalizedStringKey {
+        switch invoiceCount {
+        case 0:  return "Não importada"
+        case 1:  return "1 fatura"
+        default: return "\(invoiceCount) faturas"
+        }
+    }
 
     // MARK: - Navigation
-
-    private func goToAdjacentMonth(next: Bool) {
-        let anchor = next ? month.anchorDate.nextMonthAnchor : month.anchorDate.previousMonthAnchor
-        let target = MonthRollover.resolve(anchor: anchor, in: context)
-        onSelectMonth(target)
-    }
 
     @ViewBuilder
     private func sectionHeader(_ title: LocalizedStringKey) -> some View {

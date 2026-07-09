@@ -7,9 +7,28 @@ struct MonthExpensesDetailSheet: View {
     @Environment(\.dismiss) private var dismiss
 
     let groups: [SummaryMath.ExpenseGroup]
+    /// Previous month's spend per category id, or `nil` when there's no earlier
+    /// month. Drives the month-over-month variation badges.
+    var previousTotals: [UUID: Decimal]? = nil
 
     private var total: Decimal {
         groups.reduce(0) { $0 + $1.amount }
+    }
+
+    private var previousTotal: Decimal? {
+        previousTotals.map { $0.values.reduce(0, +) }
+    }
+
+    /// Percent change for a category vs. last month. `nil` when there's no
+    /// comparison month or the category had no prior spend (shown as "Novo").
+    private func delta(for categoryID: UUID, current: Decimal) -> Double? {
+        guard let previousTotals else { return nil }
+        return SummaryMath.percentDelta(current: current, previous: previousTotals[categoryID] ?? 0)
+    }
+
+    private func isNew(_ categoryID: UUID) -> Bool {
+        guard let previousTotals else { return false }
+        return (previousTotals[categoryID] ?? 0) == 0
     }
 
     var body: some View {
@@ -47,6 +66,11 @@ struct MonthExpensesDetailSheet: View {
                                 .font(.subheadline.weight(.semibold))
                                 .foregroundStyle(.primary)
                             Spacer()
+                            if let delta = delta(for: group.category.id, current: group.amount) {
+                                DeltaPill(value: delta, higherIsBetter: false)
+                            } else if isNew(group.category.id) {
+                                newTag
+                            }
                             Text(group.amount.brl)
                                 .font(.subheadline.weight(.semibold))
                                 .monospacedDigit()
@@ -64,6 +88,17 @@ struct MonthExpensesDetailSheet: View {
                 }
             }
         }
+    }
+
+    /// Shown when a category had no spend last month, where a percentage would
+    /// be undefined (division by zero).
+    private var newTag: some View {
+        Text("Novo")
+            .font(.caption.weight(.semibold))
+            .foregroundStyle(.red)
+            .padding(.horizontal, 8)
+            .padding(.vertical, 4)
+            .background(Capsule().fill(Color.red.opacity(0.15)))
     }
 
     private func icon(for source: SummaryMath.ExpenseLine.Source) -> String {

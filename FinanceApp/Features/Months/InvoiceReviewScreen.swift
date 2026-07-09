@@ -114,7 +114,8 @@ struct InvoiceReviewScreen: View {
                 category: category,
                 transactions: allPurchases
                     .filter { $0.category?.id == category.id }
-                    .sorted { $0.postedDate > $1.postedDate }
+                    .sorted { $0.postedDate > $1.postedDate },
+                onRecategorize: { txn, newCategory in assign(newCategory, to: txn) }
             )
         }
         .sheet(item: $addingTo) { invoice in

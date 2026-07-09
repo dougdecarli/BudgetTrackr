@@ -4,12 +4,22 @@ import SwiftData
 /// Shows where the month's money went as a donut chart with a legend, using the
 /// shared `SpendingDonutView`. Renders nothing when there's no spending.
 struct CategoryBreakdownCard: View {
+    @Environment(\.modelContext) private var context
     let month: Month
 
     @State private var showingDetail = false
 
     private var slices: [SpendingSlice] {
         SpendingDonut.slices(from: SummaryMath.categoryBreakdown(for: month))
+    }
+
+    /// Previous month's spend per category, keyed by category id — powers the
+    /// month-over-month variation shown per category in the detail sheet. `nil`
+    /// when there's no earlier month to compare against.
+    private var previousTotals: [UUID: Decimal]? {
+        guard let prev = MonthRollover.previous(of: month, in: context) else { return nil }
+        return SummaryMath.categoryBreakdown(for: prev)
+            .reduce(into: [:]) { $0[$1.category.id] = $1.amount }
     }
 
     var body: some View {
@@ -41,7 +51,8 @@ struct CategoryBreakdownCard: View {
             .buttonStyle(.plain)
             .sheet(isPresented: $showingDetail) {
                 MonthExpensesDetailSheet(
-                    groups: SummaryMath.categorizedExpenseGroups(for: month)
+                    groups: SummaryMath.categorizedExpenseGroups(for: month),
+                    previousTotals: previousTotals
                 )
             }
         }

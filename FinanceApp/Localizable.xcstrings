@@ -408,6 +408,9 @@
     "Bônus" : {
 
     },
+    "Buscar estabelecimento ou categoria" : {
+
+    },
     "Cada compra da fatura é categorizada sozinha pelo nome da loja. Ajuste uma vez e o app aprende para as próximas." : {
 
     },
@@ -1367,6 +1370,9 @@
           }
         }
       }
+    },
+    "Novo" : {
+
     },
     "Novo lançamento" : {
 

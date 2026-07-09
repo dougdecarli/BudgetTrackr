@@ -156,7 +156,9 @@ struct SummaryHeroCard: View {
 
 /// Small capsule showing a signed percentage change with a directional arrow.
 /// The tint reflects whether the change is favorable (e.g. rising spending is bad).
-private struct DeltaPill: View {
+/// Shared with the month's expenses detail sheet so category deltas read the same
+/// as the dashboard's income/spending/result deltas.
+struct DeltaPill: View {
     let value: Double
     var higherIsBetter: Bool = true
 

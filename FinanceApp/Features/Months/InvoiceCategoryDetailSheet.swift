@@ -1,14 +1,21 @@
 import SwiftUI
 
 /// Drill-down from the invoice breakdown: every purchase in a single category
-/// across the month's cards, with the category total up top. Read-only — edits
-/// happen back on the review list.
+/// across the month's cards, with the category total up top. Tapping a purchase
+/// opens the category picker so it can be recategorized in place — the caller
+/// persists the choice and learns the merchant rule (same path as the review
+/// list).
 struct InvoiceCategoryDetailSheet: View {
     @Environment(\.dismiss) private var dismiss
 
     let category: Category
     /// The category's purchases, already filtered and sorted by the caller.
     let transactions: [InvoiceTransaction]
+    /// Applies a new category to a purchase (and learns the merchant rule).
+    /// Runs on the review screen so it can update every card in the month.
+    var onRecategorize: (InvoiceTransaction, Category) -> Void
+
+    @State private var editing: InvoiceTransaction?
 
     private var total: Decimal {
         transactions.reduce(0) { $0 + $1.amount }
@@ -46,7 +53,12 @@ struct InvoiceCategoryDetailSheet: View {
 
                 Section {
                     ForEach(transactions) { txn in
-                        InvoiceTransactionRow(transaction: txn)
+                        Button {
+                            editing = txn
+                        } label: {
+                            InvoiceTransactionRow(transaction: txn)
+                        }
+                        .buttonStyle(.plain)
                     }
                 }
             }
@@ -55,6 +67,11 @@ struct InvoiceCategoryDetailSheet: View {
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Fechar") { dismiss() }
+                }
+            }
+            .sheet(item: $editing) { txn in
+                InvoiceCategorySheet(transaction: txn) { newCategory in
+                    onRecategorize(txn, newCategory)
                 }
             }
         }

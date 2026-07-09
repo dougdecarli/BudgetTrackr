@@ -6,6 +6,19 @@ struct MerchantRulesView: View {
     @Query(sort: [SortDescriptor(\MerchantRule.merchantKey)]) private var rules: [MerchantRule]
 
     @State private var editing: MerchantRule?
+    @State private var searchText = ""
+
+    /// Rules matching the search box, by merchant key or assigned category name.
+    private var filteredRules: [MerchantRule] {
+        let query = searchText.trimmingCharacters(in: .whitespaces)
+        guard !query.isEmpty else { return rules }
+        // localizedStandardContains ignores both case and diacritics, so
+        // "saude" matches "Saúde" — how pt-BR users actually type.
+        return rules.filter { rule in
+            rule.merchantKey.localizedStandardContains(query)
+                || (rule.category?.name.localizedStandardContains(query) ?? false)
+        }
+    }
 
     var body: some View {
         List {
@@ -15,8 +28,10 @@ struct MerchantRulesView: View {
                     systemImage: "list.bullet.rectangle",
                     description: Text("Regras são criadas automaticamente ao revisar a fatura.")
                 )
+            } else if filteredRules.isEmpty {
+                ContentUnavailableView.search(text: searchText)
             } else {
-                ForEach(rules) { rule in
+                ForEach(filteredRules) { rule in
                     Button {
                         editing = rule
                     } label: {
@@ -45,6 +60,7 @@ struct MerchantRulesView: View {
             }
         }
         .navigationTitle("Regras de estabelecimentos")
+        .searchable(text: $searchText, prompt: "Buscar estabelecimento ou categoria")
         .sheet(item: $editing) { rule in
             MerchantRuleEditorSheet(rule: rule)
         }

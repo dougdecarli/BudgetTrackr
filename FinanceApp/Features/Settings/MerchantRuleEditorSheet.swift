@@ -8,8 +8,16 @@ struct MerchantRuleEditorSheet: View {
 
     let rule: MerchantRule
 
-    @State private var merchantKey: String = ""
+    @State private var merchantKey: String
     @State private var selectedCategoryID: UUID?
+
+    init(rule: MerchantRule) {
+        self.rule = rule
+        // Seed once at init. Seeding in `.onAppear` instead would re-fire when
+        // the navigationLink picker pops back, clobbering the user's new choice.
+        _merchantKey = State(initialValue: rule.merchantKey)
+        _selectedCategoryID = State(initialValue: rule.category?.id)
+    }
 
     var selectedCategory: Category? {
         categories.first { $0.id == selectedCategoryID }
@@ -44,10 +52,6 @@ struct MerchantRuleEditorSheet: View {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Salvar", action: save).disabled(!canSave)
                 }
-            }
-            .onAppear {
-                merchantKey = rule.merchantKey
-                selectedCategoryID = rule.category?.id
             }
         }
     }

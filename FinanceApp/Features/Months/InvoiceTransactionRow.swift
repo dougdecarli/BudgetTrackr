@@ -5,6 +5,10 @@ import SwiftUI
 struct InvoiceTransactionRow: View {
     @Environment(\.locale) private var locale
     let transaction: InvoiceTransaction
+    /// When shown in the cross-card review inbox, names the card this purchase
+    /// came from so identical-looking rows from different invoices stay
+    /// distinguishable. `nil` inside a single card's own section.
+    var cardName: String? = nil
 
     var body: some View {
         HStack(alignment: .center, spacing: 12) {
@@ -26,6 +30,10 @@ struct InvoiceTransactionRow: View {
 
                 HStack(spacing: 6) {
                     Text(transaction.postedDate.formatted(.dateTime.day().month(.abbreviated).locale(Money.locale)))
+                    if let cardName, !cardName.isEmpty {
+                        Text("·")
+                        Text(cardName)
+                    }
                     if !transaction.isFee {
                         Text("·")
                         categoryLabel

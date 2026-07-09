@@ -8,6 +8,9 @@ struct AmountDisplayView: View {
     let entry: AmountEntry
     var caption: LocalizedStringKey = "Valor"
     var tint: Color = .primary
+    /// Hidden while another field (e.g. the name text field) owns focus, so the
+    /// screen never shows two blinking cursors at once.
+    var showsCaret: Bool = true
 
     var body: some View {
         VStack(spacing: 4) {
@@ -23,7 +26,9 @@ struct AmountDisplayView: View {
                     .minimumScaleFactor(0.5)
                     .contentTransition(.numericText())
                     .animation(.snappy(duration: 0.2), value: entry.display)
-                BlinkingCaret(color: tint)
+                if showsCaret {
+                    BlinkingCaret(color: tint)
+                }
             }
         }
         .frame(maxWidth: .infinity)
@@ -32,20 +37,21 @@ struct AmountDisplayView: View {
 }
 
 /// Thin caret that fades in and out, mimicking a text-field cursor for the
-/// custom keypad (which has no system caret of its own).
+/// custom keypad (which has no system caret of its own). Uses `phaseAnimator`
+/// so the blink runs on its own timeline — an enclosing `.animation` transaction
+/// (e.g. when the caret is re-inserted after the name field loses focus) can't
+/// cancel it and leave the caret stuck invisible.
 private struct BlinkingCaret: View {
     var color: Color
-    @State private var visible = true
 
     var body: some View {
         RoundedRectangle(cornerRadius: 1.5, style: .continuous)
             .fill(color)
             .frame(width: 3, height: 34)
-            .opacity(visible ? 1 : 0)
-            .onAppear {
-                withAnimation(.easeInOut(duration: 0.55).repeatForever(autoreverses: true)) {
-                    visible = false
-                }
+            .phaseAnimator([true, false]) { caret, visible in
+                caret.opacity(visible ? 1 : 0)
+            } animation: { _ in
+                .easeInOut(duration: 0.55)
             }
             .accessibilityHidden(true)
     }

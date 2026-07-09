@@ -49,6 +49,15 @@ struct InvoiceReviewScreen: View {
     private var categorizedCount: Int { allPurchases.filter { $0.category != nil }.count }
     private var monthTotal: Decimal { invoices.reduce(0) { $0 + $1.totalAmount } }
 
+    /// Every still-uncategorized purchase across all cards, newest first — the
+    /// review inbox surfaced at the top so the user can clear them in one place
+    /// instead of hunting through each card's section.
+    private var uncategorized: [InvoiceTransaction] {
+        allPurchases
+            .filter { $0.category == nil }
+            .sorted { $0.postedDate > $1.postedDate }
+    }
+
     /// Per-category invoice totals across all cards, sorted descending — feeds
     /// the breakdown card.
     private var breakdown: [(category: Category, amount: Decimal)] {
@@ -204,9 +213,36 @@ struct InvoiceReviewScreen: View {
 
             summarySection
 
+            if !uncategorized.isEmpty {
+                uncategorizedSection
+            }
+
             ForEach(invoices) { invoice in
                 invoiceSection(invoice)
             }
+        }
+    }
+
+    /// Cross-card review inbox: only the uncategorized purchases, so the user can
+    /// see and clear them at a glance. Rows drop out as they're categorized;
+    /// the whole section disappears once nothing is left to review.
+    private var uncategorizedSection: some View {
+        Section {
+            ForEach(uncategorized) { txn in
+                row(txn, showsCard: invoices.count > 1)
+            }
+        } header: {
+            HStack(spacing: 6) {
+                Label("A revisar", systemImage: "questionmark.circle.fill")
+                    .foregroundStyle(Theme.oneOff)
+                Spacer()
+                Text("\(uncategorized.count)")
+                    .foregroundStyle(.secondary)
+            }
+            .font(.footnote.weight(.semibold))
+            .textCase(nil)
+        } footer: {
+            Text("Compras sem categoria não entram nas categorias do mês. Toque para categorizar.")
         }
     }
 
@@ -271,11 +307,14 @@ struct InvoiceReviewScreen: View {
         }
     }
 
-    private func row(_ txn: InvoiceTransaction) -> some View {
+    private func row(_ txn: InvoiceTransaction, showsCard: Bool = false) -> some View {
         Button {
             categorizing = txn
         } label: {
-            InvoiceTransactionRow(transaction: txn)
+            InvoiceTransactionRow(
+                transaction: txn,
+                cardName: showsCard ? txn.invoice?.bankName : nil
+            )
         }
         .buttonStyle(.plain)
         .swipeActions(edge: .trailing) {

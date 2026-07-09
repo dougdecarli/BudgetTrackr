@@ -23,6 +23,7 @@ struct AddOneOffSheet: View {
     @State private var saveAsRecurring = false
     @State private var creatingCategory = false
     @State private var didSave = false
+    @FocusState private var nameFocused: Bool
 
     private var selectedCategory: Category? {
         categories.first { $0.id == selectedCategoryID }
@@ -48,10 +49,14 @@ struct AddOneOffSheet: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 18) {
-                AmountDisplayView(entry: entry, tint: Theme.oneOff)
+                AmountDisplayView(entry: entry, tint: Theme.oneOff, showsCaret: !nameFocused)
                     .padding(.top, 8)
+                    .contentShape(Rectangle())
+                    // Tapping the value returns from the name field to the keypad.
+                    .onTapGesture { nameFocused = false }
 
                 TextField("Nome", text: $label)
+                    .focused($nameFocused)
                     .padding(.horizontal, 16)
                     .padding(.vertical, 12)
                     .background(
@@ -88,9 +93,19 @@ struct AddOneOffSheet: View {
 
                 Spacer(minLength: 0)
 
-                AmountKeypad(entry: $entry, tint: Theme.oneOff)
+                // The custom keypad and the system keyboard are mutually
+                // exclusive input surfaces: hide the keypad while the name field
+                // is focused so only one keyboard is ever on screen.
+                if !nameFocused {
+                    AmountKeypad(entry: $entry, tint: Theme.oneOff)
+                        .transition(.move(edge: .bottom).combined(with: .opacity))
+                }
             }
             .padding()
+            .animation(.snappy(duration: 0.25), value: nameFocused)
+            // Keep the system keyboard from compressing the layout (which slid
+            // the value up under the nav title); it overlays the hidden keypad.
+            .ignoresSafeArea(.keyboard, edges: .bottom)
             .background(Color(.systemGroupedBackground).ignoresSafeArea())
             .navigationTitle(editing == nil ? "Adicionar despesa" : "Editar despesa")
             .navigationBarTitleDisplayMode(.inline)

@@ -223,6 +223,9 @@
         }
       }
     },
+    "A revisar" : {
+
+    },
     "Abrir" : {
 
     },
@@ -548,6 +551,9 @@
           }
         }
       }
+    },
+    "Compras sem categoria não entram nas categorias do mês. Toque para categorizar." : {
+
     },
     "Contas" : {
       "localizations" : {

@@ -43,7 +43,7 @@ struct CategoryBreakdownCard: View {
                 }
                 .buttonStyle(.plain)
 
-                SpendingDonutView(slices: slices, onShowAll: { showingDetail = true })
+                SpendingDonutView(slices: slices)
             }
             .padding(20)
             .frame(maxWidth: .infinity, alignment: .leading)

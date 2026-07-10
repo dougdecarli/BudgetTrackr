@@ -32,17 +32,15 @@ enum SpendingDonut {
 /// ring plots every category; tapping a slice (or its legend row) pops it out
 /// and swaps the center total for that category's name, value and share —
 /// tapping it again returns to the total. When there are many categories the
-/// legend lists the top rows and folds the rest into a "+N categorias" hint.
+/// legend lists the top rows and folds the rest behind a "+N categorias" row
+/// that expands the list in place (tap again to collapse).
 /// Shared by the Meses dashboard and the Trends "Gastos por categoria" card.
 struct SpendingDonutView: View {
     @Environment(\.locale) private var locale
     let slices: [SpendingSlice]
 
-    /// Legend rows shown before folding the tail into "+N categorias".
+    /// Legend rows shown before folding the tail behind "+N categorias".
     var legendLimit: Int = 5
-    /// Invoked when the "+N categorias" row is tapped (e.g. open the expense
-    /// detail sheet). When `nil` the row is informational only.
-    var onShowAll: (() -> Void)? = nil
 
     /// Drives the entrance animation: the ring spins and scales in, then the
     /// center total fades up. Replays when the slice set changes (e.g. switching
@@ -51,6 +49,8 @@ struct SpendingDonutView: View {
 
     /// Currently focused slice; `nil` shows the month total in the center.
     @State private var selectedID: UUID?
+    /// Whether the folded tail of the legend is expanded in place.
+    @State private var legendExpanded = false
 
     private var total: Decimal { slices.reduce(0) { $0 + $1.amount } }
 
@@ -77,6 +77,7 @@ struct SpendingDonutView: View {
         .onChange(of: sliceKey) { _, _ in
             appeared = false
             selectedID = nil
+            legendExpanded = false
             withAnimation(.spring(response: 0.6, dampingFraction: 0.72)) {
                 appeared = true
             }
@@ -126,7 +127,7 @@ struct SpendingDonutView: View {
                 .lineLimit(1)
                 .minimumScaleFactor(0.7)
             Text((selectedSlice?.amount ?? total).brl)
-                .font(.system(size: 14, weight: .semibold, design: .rounded))
+                .font(.system(size: 12, weight: .semibold, design: .rounded))
                 .monospacedDigit()
                 .lineLimit(1)
                 .minimumScaleFactor(0.5)
@@ -187,14 +188,14 @@ struct SpendingDonutView: View {
 
     // MARK: - Legend
 
-    /// Categories folded out of the legend (never fold just one — a single
-    /// extra row is shorter than the "+1 categoria" hint would be).
+    /// Categories folded behind "+N categorias" while collapsed (never fold
+    /// just one — a single extra row is shorter than the hint would be).
     private var hiddenLegendCount: Int {
         slices.count > legendLimit + 1 ? slices.count - legendLimit : 0
     }
 
     private var legendSlices: [SpendingSlice] {
-        guard hiddenLegendCount > 0 else { return slices }
+        guard hiddenLegendCount > 0, !legendExpanded else { return slices }
         var visible = Array(slices.prefix(legendLimit))
         // A slice focused from the ring must always have a visible legend row:
         // when the selection lives in the folded tail, it borrows the last
@@ -252,36 +253,30 @@ struct SpendingDonutView: View {
         .accessibilityAddTraits(isSelected ? .isSelected : [])
     }
 
-    /// Tail of the legend when categories overflow. The ring still plots all
-    /// of them; this row just says how many rows were folded and, when a
-    /// handler is provided, links to the full breakdown.
+    /// Tail toggle for the legend: collapsed it reads "+N categorias" and
+    /// expands the rest of the list in place; expanded it reads "Mostrar
+    /// menos" and folds back down. The ring always plots every category
+    /// regardless of this toggle.
     private var moreRow: some View {
-        Group {
-            if let onShowAll {
-                Button(action: onShowAll) {
-                    moreLabel(interactive: true)
-                        .contentShape(Rectangle())
-                }
-                .buttonStyle(.plain)
-            } else {
-                moreLabel(interactive: false)
+        Button {
+            withAnimation(selectionSpring) {
+                legendExpanded.toggle()
             }
-        }
-    }
-
-    private func moreLabel(interactive: Bool) -> some View {
-        HStack(spacing: 8) {
-            Text("+\(hiddenLegendCount) categorias")
-                .font(.caption)
-                .foregroundStyle(.secondary)
-                .lineLimit(1)
-            Spacer(minLength: 1)
-            if interactive {
-                Image(systemName: "chevron.right")
+        } label: {
+            HStack(spacing: 8) {
+                Text(legendExpanded ? "Mostrar menos" : "+\(hiddenLegendCount) categorias")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(1)
+                Spacer(minLength: 1)
+                Image(systemName: "chevron.down")
                     .font(.caption2.weight(.semibold))
                     .foregroundStyle(.tertiary)
+                    .rotationEffect(.degrees(legendExpanded ? 180 : 0))
             }
+            .contentShape(Rectangle())
         }
+        .buttonStyle(.plain)
     }
 
     private func share(_ amount: Decimal) -> String {
@@ -303,7 +298,7 @@ struct SpendingDonutView: View {
         SpendingSlice(id: UUID(), name: "Assinaturas", amount: 180, color: .brown),
     ]
 
-    return SpendingDonutView(slices: slices, onShowAll: {})
+    return SpendingDonutView(slices: slices)
         .padding(20)
         .background(
             RoundedRectangle(cornerRadius: 20, style: .continuous)

@@ -24,10 +24,12 @@ struct CategoryBreakdownCard: View {
 
     var body: some View {
         if !slices.isEmpty {
-            Button {
-                showingDetail = true
-            } label: {
-                VStack(alignment: .leading, spacing: 16) {
+            // The donut handles its own taps (slice focus), so only the header
+            // row opens the detail sheet — not the whole card.
+            VStack(alignment: .leading, spacing: 16) {
+                Button {
+                    showingDetail = true
+                } label: {
                     HStack {
                         Text("Para onde foi")
                             .font(.subheadline.weight(.semibold))
@@ -37,18 +39,18 @@ struct CategoryBreakdownCard: View {
                             .font(.caption.weight(.semibold))
                             .foregroundStyle(.tertiary)
                     }
-
-                    SpendingDonutView(slices: slices)
+                    .contentShape(Rectangle())
                 }
-                .padding(20)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .background(
-                    RoundedRectangle(cornerRadius: Theme.cardRadius, style: .continuous)
-                        .fill(Color(.secondarySystemGroupedBackground))
-                )
-                .contentShape(Rectangle())
+                .buttonStyle(.plain)
+
+                SpendingDonutView(slices: slices, onShowAll: { showingDetail = true })
             }
-            .buttonStyle(.plain)
+            .padding(20)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(
+                RoundedRectangle(cornerRadius: Theme.cardRadius, style: .continuous)
+                    .fill(Color(.secondarySystemGroupedBackground))
+            )
             .sheet(isPresented: $showingDetail) {
                 MonthExpensesDetailSheet(
                     groups: SummaryMath.categorizedExpenseGroups(for: month),

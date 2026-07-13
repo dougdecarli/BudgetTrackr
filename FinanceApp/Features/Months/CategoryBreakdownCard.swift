@@ -54,7 +54,8 @@ struct CategoryBreakdownCard: View {
             .sheet(isPresented: $showingDetail) {
                 MonthExpensesDetailSheet(
                     groups: SummaryMath.categorizedExpenseGroups(for: month),
-                    previousTotals: previousTotals
+                    previousTotals: previousTotals,
+                    monthAnchor: month.anchorDate
                 )
             }
         }

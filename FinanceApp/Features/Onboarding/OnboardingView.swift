@@ -106,6 +106,12 @@ private struct OnboardingPage {
             body: "Gastos avulsos e da fatura entram no mesmo resumo por categoria — Moradia, Alimentação, Transporte. Ajuste ou crie as suas em Ajustes."
         ),
         OnboardingPage(
+            icon: "icloud.fill",
+            tint: Theme.card,
+            title: "Seus dados no iCloud",
+            body: "Tudo o que você registra fica salvo com segurança no seu iCloud e sincroniza entre os seus dispositivos. Seus dados são seus — ficam na sua conta Apple, não em nossos servidores."
+        ),
+        OnboardingPage(
             icon: "chart.pie.fill",
             tint: Theme.income,
             title: "Pronto para começar",

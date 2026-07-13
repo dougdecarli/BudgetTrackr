@@ -1,17 +1,18 @@
 {
   "sourceLanguage" : "pt-BR",
   "strings" : {
-    "" : {
-
-    },
-    "—" : {
-
-    },
-    "·" : {
-
-    },
+    "" : {},
+    "—" : {},
+    "·" : {},
     "· %lld a revisar" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "· %lld to review"
+          }
+        }
+      }
     },
     "“%@” está em uso por %lld item(s). Remova as referências antes de excluir." : {
       "localizations" : {
@@ -35,7 +36,14 @@
       }
     },
     "%lld" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
+          }
+        }
+      }
     },
     "%lld %@" : {
       "localizations" : {
@@ -58,7 +66,14 @@
       }
     },
     "%lld faturas" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld statements"
+          }
+        }
+      }
     },
     "%lld fontes" : {
       "localizations" : {
@@ -191,10 +206,24 @@
       }
     },
     "+%lld categorias" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "+%lld categories"
+          }
+        }
+      }
     },
     "1 fatura" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 statement"
+          }
+        }
+      }
     },
     "3 meses" : {
       "localizations" : {
@@ -227,10 +256,24 @@
       }
     },
     "A revisar" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To review"
+          }
+        }
+      }
     },
     "Abrir" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open"
+          }
+        }
+      }
     },
     "Abrir calendário" : {
       "localizations" : {
@@ -273,7 +316,14 @@
       }
     },
     "Acumulado no período" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Accumulated for the period"
+          }
+        }
+      }
     },
     "Adiciona um resumo “em dinheiro” no topo do mês, que desconsidera benefícios (como vale-refeição) e os gastos pagos com eles — mostrando só o que realmente entra e sai em dinheiro." : {
       "localizations" : {
@@ -286,7 +336,14 @@
       }
     },
     "Adicionar despesa" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add expense"
+          }
+        }
+      }
     },
     "Adicionar despesa avulsa" : {
       "localizations" : {
@@ -299,7 +356,14 @@
       }
     },
     "Adicionar lançamento" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add entry"
+          }
+        }
+      }
     },
     "Adicionar renda" : {
       "localizations" : {
@@ -332,7 +396,14 @@
       }
     },
     "Ano" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Year"
+          }
+        }
+      }
     },
     "Apagar" : {
       "localizations" : {
@@ -375,7 +446,14 @@
       }
     },
     "As compras importadas e suas categorias serão apagadas deste mês." : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The imported purchases and their categories will be removed from this month."
+          }
+        }
+      }
     },
     "Assinaturas" : {
       "extractionState" : "stale",
@@ -409,13 +487,34 @@
       }
     },
     "Bônus" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bonus"
+          }
+        }
+      }
     },
     "Buscar estabelecimento ou categoria" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search merchant or category"
+          }
+        }
+      }
     },
     "Cada compra da fatura é categorizada sozinha pelo nome da loja. Ajuste uma vez e o app aprende para as próximas." : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Each statement purchase is categorized on its own by the merchant name. Adjust it once and the app learns for the next ones."
+          }
+        }
+      }
     },
     "Cadastre suas fontes de renda — salário, benefícios e outros — para saber quanto entra a cada mês." : {
       "localizations" : {
@@ -499,13 +598,34 @@
       }
     },
     "Categorização automática" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatic categorization"
+          }
+        }
+      }
     },
     "Categorizadas" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Categorized"
+          }
+        }
+      }
     },
     "Categorizar" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Categorize"
+          }
+        }
+      }
     },
     "Com lançamentos" : {
       "localizations" : {
@@ -559,7 +679,14 @@
       }
     },
     "Compras sem categoria não entram nas categorias do mês. Toque para categorizar." : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uncategorized purchases aren't counted in the month's categories. Tap to categorize."
+          }
+        }
+      }
     },
     "Contas" : {
       "localizations" : {
@@ -583,7 +710,14 @@
       }
     },
     "Criar" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create"
+          }
+        }
+      }
     },
     "Crie uma categoria em Ajustes → Categorias antes de continuar." : {
       "localizations" : {
@@ -596,7 +730,14 @@
       }
     },
     "Data" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Date"
+          }
+        }
+      }
     },
     "de %@" : {
       "extractionState" : "stale",
@@ -631,7 +772,14 @@
       }
     },
     "Descrição" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Description"
+          }
+        }
+      }
     },
     "Despesa" : {
       "localizations" : {
@@ -675,7 +823,14 @@
       }
     },
     "Despesas do mês" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Month's expenses"
+          }
+        }
+      }
     },
     "Despesas recorrentes" : {
       "localizations" : {
@@ -759,7 +914,14 @@
       }
     },
     "Editar valor" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit amount"
+          }
+        }
+      }
     },
     "Educação" : {
       "localizations" : {
@@ -782,10 +944,24 @@
       }
     },
     "English" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "English"
+          }
+        }
+      }
     },
     "Envie o PDF da fatura do Nubank, Itaú ou Santander — inclusive as protegidas por senha — e o app lê cada compra para você." : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Send the PDF statement from Nubank, Itaú or Santander — even password-protected ones — and the app reads every purchase for you."
+          }
+        }
+      }
     },
     "Estabelecimento" : {
       "localizations" : {
@@ -798,7 +974,14 @@
       }
     },
     "Este PDF pede senha (bancos costumam usar dígitos do CPF do titular)." : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This PDF requires a password (banks usually use digits from the holder's CPF)."
+          }
+        }
+      }
     },
     "Ex: Mercado" : {
       "localizations" : {
@@ -841,13 +1024,34 @@
       }
     },
     "Fatura importada" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statement imported"
+          }
+        }
+      }
     },
     "Fatura protegida" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Protected statement"
+          }
+        }
+      }
     },
     "Fechar" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close"
+          }
+        }
+      }
     },
     "Fonte" : {
       "localizations" : {
@@ -890,7 +1094,14 @@
       }
     },
     "Gastos avulsos e da fatura entram no mesmo resumo por categoria — Moradia, Alimentação, Transporte. Ajuste ou crie as suas em Ajustes." : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "One-off and statement expenses land in the same category summary — Housing, Food, Transportation. Adjust or create your own in Settings."
+          }
+        }
+      }
     },
     "Gastos por categoria" : {
       "localizations" : {
@@ -943,7 +1154,14 @@
       }
     },
     "Gastos por categoria · no ano" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spending by category · this year"
+          }
+        }
+      }
     },
     "Idioma" : {
       "localizations" : {
@@ -988,7 +1206,14 @@
       }
     },
     "Importar fatura" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Import statement"
+          }
+        }
+      }
     },
     "Importar fatura (em breve)" : {
       "extractionState" : "stale",
@@ -1002,10 +1227,24 @@
       }
     },
     "Importar PDF" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Import PDF"
+          }
+        }
+      }
     },
     "Importe a fatura do cartão" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Import the card statement"
+          }
+        }
+      }
     },
     "Imposto" : {
       "localizations" : {
@@ -1108,7 +1347,14 @@
       }
     },
     "Mês" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Month"
+          }
+        }
+      }
     },
     "Mês anterior" : {
       "localizations" : {
@@ -1191,7 +1437,14 @@
       }
     },
     "Mostrar menos" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show less"
+          }
+        }
+      }
     },
     "Mostrar valor “em dinheiro”" : {
       "localizations" : {
@@ -1224,7 +1477,14 @@
       }
     },
     "Não foi possível importar" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn't import"
+          }
+        }
+      }
     },
     "Não importada" : {
       "localizations" : {
@@ -1378,10 +1638,24 @@
       }
     },
     "Novo" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New"
+          }
+        }
+      }
     },
     "Novo lançamento" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New entry"
+          }
+        }
+      }
     },
     "O app já vem com categorias como Moradia, Alimentação e Transporte. Ajuste ou crie as suas em Ajustes." : {
       "extractionState" : "stale",
@@ -1415,10 +1689,24 @@
       }
     },
     "OK" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        }
+      }
     },
     "Opções da fatura" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statement options"
+          }
+        }
+      }
     },
     "Organize renda e gastos de forma simples, um mês de cada vez." : {
       "localizations" : {
@@ -1472,7 +1760,14 @@
       }
     },
     "Português" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Português"
+          }
+        }
+      }
     },
     "Pronto para começar" : {
       "localizations" : {
@@ -1526,7 +1821,14 @@
       }
     },
     "Registre despesas recorrentes (fixas) e avulsas (pontuais), tudo separado por mês." : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Track recurring (fixed) and one-off expenses, all split out by month."
+          }
+        }
+      }
     },
     "Registre despesas recorrentes (fixas), avulsas (pontuais) e a fatura do cartão, tudo separado por mês." : {
       "extractionState" : "stale",
@@ -1580,10 +1882,24 @@
       }
     },
     "Remover fatura" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove statement"
+          }
+        }
+      }
     },
     "Remover fatura?" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove statement?"
+          }
+        }
+      }
     },
     "Renda" : {
       "localizations" : {
@@ -1698,7 +2014,14 @@
       }
     },
     "Selecione o PDF da fatura do Nubank, Itaú ou Santander. Cada compra aparece aqui para você categorizar — e entra no total de gastos do mês. Você pode importar mais de um cartão." : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select the PDF statement from Nubank, Itaú or Santander. Each purchase appears here for you to categorize — and counts toward the month's total spending. You can import more than one card."
+          }
+        }
+      }
     },
     "Selecione…" : {
       "localizations" : {
@@ -1761,7 +2084,14 @@
       }
     },
     "Senha" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Password"
+          }
+        }
+      }
     },
     "Separador decimal" : {
       "localizations" : {
@@ -1774,7 +2104,24 @@
       }
     },
     "Série" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Series"
+          }
+        }
+      }
+    },
+    "Seus dados no iCloud" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your data in iCloud"
+          }
+        }
+      }
     },
     "Suas finanças, mês a mês" : {
       "localizations" : {
@@ -1787,7 +2134,14 @@
       }
     },
     "Taxa" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rate"
+          }
+        }
+      }
     },
     "Taxa de poupança" : {
       "localizations" : {
@@ -1840,10 +2194,24 @@
       }
     },
     "Toque para categorizar" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap to categorize"
+          }
+        }
+      }
     },
     "Total" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total"
+          }
+        }
+      }
     },
     "Total da fatura" : {
       "localizations" : {
@@ -1856,10 +2224,34 @@
       }
     },
     "Total das faturas" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total of statements"
+          }
+        }
+      }
     },
-    "Total de despesas" : {
-
+    "Total do mês" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Month total"
+          }
+        }
+      }
+    },
+    "Total do mês %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Month total %@"
+          }
+        }
+      }
     },
     "Transporte" : {
       "localizations" : {
@@ -1867,6 +2259,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Transport"
+          }
+        }
+      }
+    },
+    "Tudo o que você registra fica salvo com segurança no seu iCloud e sincroniza entre os seus dispositivos. Seus dados são seus — ficam na sua conta Apple, não em nossos servidores." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Everything you record is saved securely in your iCloud and syncs across your devices. Your data is yours — it stays in your Apple account, not on our servers."
           }
         }
       }
@@ -1942,8 +2344,25 @@
         }
       }
     },
+    "vs. %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "vs. %@"
+          }
+        }
+      }
+    },
     "Zero" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zero"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

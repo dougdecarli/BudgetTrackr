@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>BudgetTrackr Support</title>
+<meta name="description" content="Support, FAQs, and contact information for BudgetTrackr, the private on-device budgeting app for iOS." />
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16.png" />
+<link rel="apple-touch-icon" href="assets/img/icon-256.png" />
+<link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="index.html">
+      <img src="assets/img/icon-256.png" alt="" width="30" height="30" />
+      BudgetTrackr
+    </a>
+    <div style="display:flex; align-items:center;">
+      <div class="nav-links" data-nav-links>
+        <a href="index.html" class="current">Support</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+      <button class="nav-toggle" data-nav-toggle aria-label="Toggle navigation menu" aria-expanded="false">&#9776;</button>
+      <button class="theme-toggle" data-theme-toggle aria-label="Toggle color theme"></button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero container">
+    <img class="hero-logo" src="assets/img/icon-256.png" alt="BudgetTrackr app icon" />
+    <span class="eyebrow">Support Center</span>
+    <h1>How can we help?</h1>
+    <p class="lead">
+      BudgetTrackr is a private budgeting app for iOS that keeps your income, expenses,
+      and imported credit-card statements on your device — and, if you choose, synced
+      only through your own iCloud account. Find answers below, or reach out directly.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#faq">Browse FAQs</a>
+      <a class="btn btn-secondary" href="mailto:douglasdecarlli@hotmail.com">Email Support</a>
+    </div>
+  </section>
+
+  <section class="container reveal">
+    <h2 class="section-title">About BudgetTrackr</h2>
+    <p class="section-sub">
+      BudgetTrackr helps you plan income and expenses month by month, track recurring
+      bills and one-off purchases, and turn imported credit-card PDF statements into
+      categorized transactions — all without an account, without ads, and without
+      sending your financial data to any server.
+    </p>
+    <div class="card-grid">
+      <div class="card">
+        <div class="icon">&#128274;</div>
+        <h3>No account required</h3>
+        <p>Open the app and start budgeting immediately. There is no sign-up, login, or password of any kind.</p>
+      </div>
+      <div class="card">
+        <div class="icon">&#9729;&#65039;</div>
+        <h3>iCloud sync, your way</h3>
+        <p>If iCloud is enabled on your device, your data syncs privately across your own devices via Apple's CloudKit — nowhere else.</p>
+      </div>
+      <div class="card">
+        <div class="icon">&#128196;</div>
+        <h3>On-device PDF import</h3>
+        <p>Credit-card statements are parsed right on your iPhone. The PDF and its contents are never uploaded anywhere.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container reveal" id="faq">
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <p class="section-sub">Straight answers about how BudgetTrackr actually works.</p>
+
+    <div class="faq">
+      <details class="faq-item" open>
+        <summary class="faq-question">
+          Does BudgetTrackr require an account?
+          <span class="chev">&#9660;</span>
+        </summary>
+        <div class="faq-answer">
+          <p>
+            No. BudgetTrackr has no sign-up, no login screen, and no password. You open
+            the app and start tracking your budget right away. The only optional
+            iCloud sync feature relies on the Apple ID already signed in on your
+            device — BudgetTrackr never asks you to create a separate account.
+          </p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          How does iCloud sync work?
+          <span class="chev">&#9660;</span>
+        </summary>
+        <div class="faq-answer">
+          <p>
+            BudgetTrackr stores your data locally using Apple's SwiftData framework.
+            When iCloud is available on your device, the app automatically syncs
+            that same data through Apple's CloudKit service, inside the private
+            iCloud database tied to your own Apple ID. If iCloud isn't available or
+            is turned off, BudgetTrackr simply keeps everything on-device.
+          </p>
+          <p>
+            This sync is handled entirely by Apple's infrastructure. The developer
+            has no server, no dashboard, and no way to view, access, or download
+            what is stored in your private iCloud database.
+          </p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          Are my financial data private?
+          <span class="chev">&#9660;</span>
+        </summary>
+        <div class="faq-answer">
+          <p>
+            Yes. BudgetTrackr contains no analytics SDKs, no advertising SDKs, no
+            crash-reporting services, and makes no network requests of any kind.
+            Nothing you enter — income, expenses, categories, or imported invoice
+            transactions — is transmitted to the developer or to any third party.
+            The only place your data can ever exist is on your device and,
+            optionally, in your own iCloud account.
+          </p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          Where are my imported PDFs stored?
+          <span class="chev">&#9660;</span>
+        </summary>
+        <div class="faq-answer">
+          <p>
+            When you import a credit-card statement, BudgetTrackr reads the PDF you
+            select using Apple's on-device PDFKit framework to extract transaction
+            data. That parsing happens entirely on your iPhone — the PDF file itself
+            is never uploaded, emailed, or sent anywhere. Only the resulting
+            transactions are saved, using the same local/iCloud storage as the rest
+            of your data.
+          </p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          How can I reset my data?
+          <span class="chev">&#9660;</span>
+        </summary>
+        <div class="faq-answer">
+          <p>
+            BudgetTrackr doesn't currently have a single "erase everything" button.
+            You can remove individual income sources, categories, recurring
+            expenses, one-off expenses, or merchant rules by swiping to delete them
+            in Settings.
+          </p>
+          <p>
+            To remove all local data at once, delete the app from your device. Keep
+            in mind that if iCloud sync was on, your data lives in your private
+            iCloud database and may sync back if you reinstall — to clear that too,
+            turn off BudgetTrackr's iCloud sync and remove its data from
+            <strong>Settings &rsaquo; [your name] &rsaquo; iCloud &rsaquo; Manage Account Storage</strong>
+            on your device before or after deleting the app.
+          </p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          How can I contact support?
+          <span class="chev">&#9660;</span>
+        </summary>
+        <div class="faq-answer">
+          <p>
+            Email <a href="mailto:douglasdecarlli@hotmail.com">douglasdecarlli@hotmail.com</a>
+            with a description of the issue and, if relevant, your device model and
+            iOS version. We aim to respond as quickly as possible.
+          </p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="container reveal">
+    <div class="contact-card">
+      <h2>Still need help?</h2>
+      <p>Send us an email and we'll get back to you as soon as we can.</p>
+      <a class="btn btn-primary" href="mailto:douglasdecarlli@hotmail.com">douglasdecarlli@hotmail.com</a>
+    </div>
+  </section>
+
+  <section class="container">
+    <p class="footer-copy" style="text-align:center;">
+      Legal: <a href="privacy.html">Privacy Policy</a> &middot; <a href="terms.html">Terms of Use</a>
+      &middot; Last updated July 12, 2026
+    </p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-links">
+      <a href="index.html">Support</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="mailto:douglasdecarlli@hotmail.com">Contact</a>
+    </div>
+    <p class="footer-copy">&copy; <span data-year></span> BudgetTrackr. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

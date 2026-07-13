@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Privacy Policy — BudgetTrackr</title>
+<meta name="description" content="BudgetTrackr's privacy policy: what data the app handles, on-device storage, optional iCloud sync, and what is never collected." />
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16.png" />
+<link rel="apple-touch-icon" href="assets/img/icon-256.png" />
+<link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="index.html">
+      <img src="assets/img/icon-256.png" alt="" width="30" height="30" />
+      BudgetTrackr
+    </a>
+    <div style="display:flex; align-items:center;">
+      <div class="nav-links" data-nav-links>
+        <a href="index.html">Support</a>
+        <a href="privacy.html" class="current">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+      <button class="nav-toggle" data-nav-toggle aria-label="Toggle navigation menu" aria-expanded="false">&#9776;</button>
+      <button class="theme-toggle" data-theme-toggle aria-label="Toggle color theme"></button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <section class="legal" style="padding-top:48px;">
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated: July 12, 2026</p>
+
+    <div class="callout">
+      <p>
+        <strong>In short:</strong> BudgetTrackr requires no account, collects no
+        personal data, contains no analytics or advertising SDKs, and makes no
+        network requests. Your budgeting data stays on your device and,
+        optionally, in your own private iCloud account. The developer cannot
+        see, access, or download it.
+      </p>
+    </div>
+
+    <div class="legal-toc">
+      <p>On this page</p>
+      <ul>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#collect">Information We Collect</a></li>
+        <li><a href="#local">Local Storage</a></li>
+        <li><a href="#icloud">iCloud / CloudKit Synchronization</a></li>
+        <li><a href="#pdf">Credit Card Statement Import</a></li>
+        <li><a href="#analytics">Analytics &amp; Tracking</a></li>
+        <li><a href="#third-party">Third-Party Services</a></li>
+        <li><a href="#security">Data Security</a></li>
+        <li><a href="#rights">User Rights</a></li>
+        <li><a href="#children">Children's Privacy</a></li>
+        <li><a href="#changes">Changes</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <h2 id="introduction">Introduction</h2>
+    <p>
+      BudgetTrackr ("the app", "we") is a personal budgeting and expense-tracking
+      app for iOS, developed by an independent developer. This policy explains,
+      as accurately and specifically as possible, what data the app handles and
+      where it goes. It reflects exactly how the app is built today — nothing
+      more.
+    </p>
+
+    <h2 id="collect">Information We Collect</h2>
+    <p>
+      The developer does not collect, receive, or have access to any personal
+      or financial information you enter into BudgetTrackr. There is no account
+      system, no sign-up form, and no server operated by the developer that the
+      app communicates with. The app itself contains no networking code — it
+      does not send data to us, and it does not send data to any third party.
+    </p>
+
+    <h2 id="local">Local Storage</h2>
+    <p>
+      Everything you enter in BudgetTrackr — income sources, categories,
+      recurring expenses, one-off expenses, credit-card invoices, and merchant
+      categorization rules — is stored locally on your device using Apple's
+      SwiftData framework. If your device has no iCloud connectivity, this
+      local store is the only place your data exists.
+    </p>
+
+    <h2 id="icloud">iCloud / CloudKit Synchronization</h2>
+    <p>
+      BudgetTrackr includes an iCloud entitlement and is built to sync your
+      data automatically across your own devices using Apple's CloudKit
+      service, when iCloud is available and enabled on your device. Synced
+      data is written to the <strong>private CloudKit database scoped to your
+      personal Apple ID</strong> — not to a shared or public database, and not
+      to any database the developer controls.
+    </p>
+    <p>
+      This means the developer cannot view, query, export, or restore your
+      synced data under any circumstance; access to it is governed entirely by
+      Apple's iCloud account security (including your device passcode,
+      biometrics, and two-factor authentication). If CloudKit is unavailable —
+      for example, iCloud is signed out or restricted — BudgetTrackr falls
+      back automatically to local-only storage so the app keeps working.
+    </p>
+
+    <h2 id="pdf">Credit Card Statement Import</h2>
+    <p>
+      BudgetTrackr can import PDF credit-card statements (currently supporting
+      Nubank, Itaú, and Santander formats) to help you categorize transactions
+      faster. This is done entirely on your device using Apple's PDFKit
+      framework to read the text layout of the PDF you select via the
+      standard iOS file picker.
+    </p>
+    <p>
+      The PDF file, and any text extracted from it, is never uploaded,
+      emailed, or transmitted anywhere by the app. Only the resulting
+      transaction records (merchant, amount, date, suggested category) are
+      saved, using the same local/iCloud storage described above.
+    </p>
+
+    <h2 id="analytics">Analytics &amp; Tracking</h2>
+    <p>
+      BudgetTrackr does not integrate any analytics SDK (such as Firebase,
+      Google Analytics, Mixpanel, or Amplitude), any advertising SDK or ad
+      network, or any crash-reporting service (such as Crashlytics or
+      Sentry). The app does not track your activity inside the app, does not
+      track you across other apps or websites, and displays no
+      advertisements.
+    </p>
+
+    <h2 id="third-party">Third-Party Services</h2>
+    <p>
+      The only third party involved in BudgetTrackr's operation is Apple, via
+      the iCloud/CloudKit sync feature described above. BudgetTrackr does not
+      use any other third-party SDK, backend, or API service.
+    </p>
+
+    <h2 id="security">Data Security</h2>
+    <p>
+      Because BudgetTrackr has no servers of its own, your data's security
+      depends on the standard protections Apple provides for on-device
+      storage and for iCloud: device passcode/biometric protection, and
+      Apple's encryption of iCloud data in transit and at rest. The developer
+      does not operate infrastructure that stores, backs up, or could expose
+      your data — there is no developer-controlled system to secure or breach
+      in the first place.
+    </p>
+
+    <h2 id="rights">User Rights</h2>
+    <p>
+      Since BudgetTrackr collects no personal data and the developer has no
+      access to your on-device or iCloud data, there is no dataset for the
+      developer to give you access to, correct, export, or delete on your
+      behalf — you already have full, direct control:
+    </p>
+    <ul>
+      <li>Delete individual entries any time from within the app.</li>
+      <li>Delete the app to remove all data stored locally on that device.</li>
+      <li>
+        Manage or remove BudgetTrackr's iCloud data from
+        <strong>Settings &rsaquo; [your name] &rsaquo; iCloud &rsaquo; Manage Account Storage</strong>
+        on your iPhone or iPad.
+      </li>
+    </ul>
+
+    <h2 id="children">Children's Privacy</h2>
+    <p>
+      BudgetTrackr is not directed at children and is not designed to collect
+      information from anyone. Since the app collects no personal data from
+      any user, regardless of age, no age-specific data-handling exceptions
+      apply.
+    </p>
+
+    <h2 id="changes">Changes</h2>
+    <p>
+      If BudgetTrackr's data handling ever changes — for example, if a new
+      feature introduces networking or a new third-party service — this page
+      will be updated and the "Last updated" date above will reflect the
+      change. We encourage you to review this page periodically.
+    </p>
+
+    <h2 id="contact">Contact</h2>
+    <p>
+      Questions about this policy or how BudgetTrackr handles data? Email
+      <a href="mailto:douglasdecarlli@hotmail.com">douglasdecarlli@hotmail.com</a>.
+    </p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-links">
+      <a href="index.html">Support</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="mailto:douglasdecarlli@hotmail.com">Contact</a>
+    </div>
+    <p class="footer-copy">&copy; <span data-year></span> BudgetTrackr. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

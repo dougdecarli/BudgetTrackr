@@ -19,6 +19,25 @@ struct FinanceAppApp: App {
             InvoiceTransaction.self,
         ])
 
+        // App Store screenshot automation launches against a disposable,
+        // in-memory store. This keeps promotional demo data deterministic and
+        // completely isolated from the developer's simulator/iCloud records.
+        if ProcessInfo.processInfo.arguments.contains("-ScreenshotMode") {
+            let config = ModelConfiguration(
+                schema: schema,
+                isStoredInMemoryOnly: true,
+                cloudKitDatabase: .none
+            )
+            do {
+                let container = try ModelContainer(for: schema, configurations: [config])
+                Self.bootstrap(container.mainContext)
+                ScreenshotDemoData.seed(in: container.mainContext)
+                return container
+            } catch {
+                fatalError("Could not create screenshot ModelContainer: \(error)")
+            }
+        }
+
         // `.automatic` enables iCloud sync when the app has an iCloud/CloudKit
         // entitlement configured (Xcode → Signing & Capabilities → iCloud →
         // CloudKit), and falls back to local-only storage otherwise.

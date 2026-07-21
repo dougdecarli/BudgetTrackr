@@ -7,9 +7,9 @@ enum Money {
     /// value is untouched, there is no FX conversion.
     static var usesEnglish = false
 
-    /// Locale for month/date formatting — always Brazilian. Currency and
-    /// percentages use `presentationLocale`, which follows the language.
-    static let locale = Locale(identifier: "pt_BR")
+    /// Locale shared by month/date formatting. It follows the selected app
+    /// language so English presentation never mixes in Portuguese month names.
+    static var locale: Locale { presentationLocale }
 
     /// Presentation locale for money and percentages: `en_US` ($) in English,
     /// `pt_BR` (R$) otherwise.

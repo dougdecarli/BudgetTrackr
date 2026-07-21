@@ -21,7 +21,7 @@ extension Date {
 
     var monthLabelPtBR: String {
         let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "pt_BR")
+        formatter.locale = Money.locale
         formatter.dateFormat = "LLLL yyyy"
         let raw = formatter.string(from: self)
         return raw.prefix(1).uppercased() + raw.dropFirst()
@@ -31,7 +31,7 @@ extension Date {
     /// so the month header can weight the name and year differently.
     var monthNamePtBR: String {
         let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "pt_BR")
+        formatter.locale = Money.locale
         formatter.dateFormat = "LLLL"
         let raw = formatter.string(from: self)
         return raw.prefix(1).uppercased() + raw.dropFirst()
@@ -43,7 +43,7 @@ extension Date {
 
     var shortMonthLabelPtBR: String {
         let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "pt_BR")
+        formatter.locale = Money.locale
         formatter.dateFormat = "LLL/yy"
         return formatter.string(from: self)
     }

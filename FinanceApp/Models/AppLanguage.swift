@@ -3,8 +3,8 @@ import SwiftUI
 
 /// The UI language the app displays in. `.system` follows the device language;
 /// the other cases force a specific language regardless of the device setting.
-/// Only the UI copy is affected — currency and month labels stay Brazilian
-/// (see `Money` and `DateExtensions`, which pin their own `pt_BR` locale).
+/// UI copy, currency, and date presentation follow this selection; stored
+/// values remain unchanged.
 enum AppLanguage: String, CaseIterable, Identifiable {
     case system
     case portuguese
@@ -22,8 +22,8 @@ enum AppLanguage: String, CaseIterable, Identifiable {
         }
     }
 
-    /// Whether the effective UI presentation is English. Drives the currency
-    /// symbol ($ vs R$). For `.system`, reflects the device language.
+    /// Whether the effective UI presentation is English. Drives currency and
+    /// date formatting. For `.system`, reflects the device language.
     var isEnglishPresentation: Bool {
         switch self {
         case .english:    return true
